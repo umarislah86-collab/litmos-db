@@ -3,115 +3,79 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Litmos Assessment Database</title>
+<title>Litmos ASSessment DB</title>
 <style>
   :root {
-    --bg: #0f1117;
-    --surface: #1a1d27;
-    --surface2: #22263a;
-    --border: #2e3248;
-    --text: #e2e8f0;
-    --text-muted: #8892a4;
-    --accent: #4f8ef7;
-    --general: #3b82f6;
-    --security: #ef4444;
-    --hcsm: #10b981;
-    --general-bg: rgba(59,130,246,0.12);
-    --security-bg: rgba(239,68,68,0.12);
-    --hcsm-bg: rgba(16,185,129,0.12);
-    --highlight: #fbbf24;
+    --bg: #0f1117; --surface: #1a1d27; --surface2: #22263a; --border: #2e3248;
+    --text: #e2e8f0; --text-muted: #8892a4; --accent: #4f8ef7;
+    --general: #3b82f6; --security: #ef4444; --hcsm: #10b981;
+    --general-bg: rgba(59,130,246,0.12); --security-bg: rgba(239,68,68,0.12);
+    --hcsm-bg: rgba(16,185,129,0.12); --highlight: #fbbf24;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; min-height: 100vh; }
 
-  /* ── LOGIN ─────────────────────────────── */
-  #loginView {
-    min-height: 100vh; display: flex; align-items: center; justify-content: center;
-    background: radial-gradient(ellipse at 50% 40%, #1a2340 0%, var(--bg) 70%);
-  }
-  .login-box {
-    background: var(--surface); border: 1px solid var(--border); border-radius: 20px;
-    padding: 48px 40px; width: 100%; max-width: 420px; text-align: center;
-    box-shadow: 0 24px 60px rgba(0,0,0,.4);
-  }
+  /* LOGIN */
+  #loginView { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: radial-gradient(ellipse at 50% 40%, #1a2340 0%, var(--bg) 70%); }
+  .login-box { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 48px 40px; width: 100%; max-width: 420px; text-align: center; box-shadow: 0 24px 60px rgba(0,0,0,.4); }
   .login-logo { font-size: 28px; font-weight: 800; color: var(--accent); margin-bottom: 6px; }
-  .login-sub { color: var(--text-muted); font-size: 14px; margin-bottom: 36px; }
+  .login-sub { font-size: 13px; margin-bottom: 6px; }
+  .login-credit { font-size: 12px; color: var(--text-muted); margin-bottom: 32px; }
   .login-box label { display: block; text-align: left; font-size: 13px; color: var(--text-muted); margin-bottom: 8px; font-weight: 500; }
-  .login-box input {
-    width: 100%; padding: 12px 16px; background: var(--bg); border: 1px solid var(--border);
-    border-radius: 10px; color: var(--text); font-size: 15px; outline: none;
-    transition: border-color .15s; margin-bottom: 16px;
-  }
+  .login-box input { width: 100%; padding: 12px 16px; background: var(--bg); border: 1px solid var(--border); border-radius: 10px; color: var(--text); font-size: 15px; outline: none; transition: border-color .15s; margin-bottom: 16px; }
   .login-box input:focus { border-color: var(--accent); }
   .login-box input::placeholder { color: var(--text-muted); }
-  .btn-enter {
-    width: 100%; padding: 13px; background: var(--accent); color: #fff; border: none;
-    border-radius: 10px; font-size: 15px; font-weight: 600; cursor: pointer;
-    transition: opacity .15s; letter-spacing: .02em;
-  }
+  .btn-enter { width: 100%; padding: 13px; background: var(--accent); color: #fff; border: none; border-radius: 10px; font-size: 15px; font-weight: 600; cursor: pointer; transition: opacity .15s; }
   .btn-enter:hover { opacity: .88; }
 
-  /* ── MODAL ─────────────────────────────── */
-  .modal-overlay {
-    display: none; position: fixed; inset: 0; background: rgba(0,0,0,.65);
-    backdrop-filter: blur(4px); z-index: 200; align-items: center; justify-content: center; padding: 20px;
-  }
+  /* MODAL */
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.65); backdrop-filter: blur(4px); z-index: 200; align-items: center; justify-content: center; padding: 20px; }
   .modal-overlay.show { display: flex; }
-  .modal-box {
-    background: var(--surface); border: 1px solid var(--border); border-radius: 18px;
-    padding: 36px 32px; max-width: 500px; width: 100%;
-    box-shadow: 0 24px 60px rgba(0,0,0,.5); animation: popIn .2s ease;
-  }
+  .modal-box { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 36px 32px; max-width: 500px; width: 100%; box-shadow: 0 24px 60px rgba(0,0,0,.5); animation: popIn .2s ease; }
   @keyframes popIn { from { transform: scale(.92); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+  /* WELCOME MODAL */
   .modal-greeting { font-size: 20px; font-weight: 700; color: var(--accent); margin-bottom: 20px; }
   .modal-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
   .modal-list li { display: flex; gap: 12px; font-size: 14px; line-height: 1.6; color: var(--text); }
-  .modal-list li .num {
-    min-width: 24px; height: 24px; background: var(--accent); color: #fff;
-    border-radius: 50%; display: flex; align-items: center; justify-content: center;
-    font-size: 12px; font-weight: 700; flex-shrink: 0; margin-top: 1px;
-  }
+  .modal-list li .num { min-width: 24px; height: 24px; background: var(--accent); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
   .modal-outro { font-size: 14px; color: var(--text-muted); margin-bottom: 24px; font-style: italic; }
-  .btn-lets-go {
-    width: 100%; padding: 13px; background: var(--hcsm); color: #fff; border: none;
-    border-radius: 10px; font-size: 15px; font-weight: 600; cursor: pointer; transition: opacity .15s;
-  }
+  .btn-lets-go { width: 100%; padding: 13px; background: var(--hcsm); color: #fff; border: none; border-radius: 10px; font-size: 15px; font-weight: 600; cursor: pointer; transition: opacity .15s; }
   .btn-lets-go:hover { opacity: .88; }
 
-  /* ── UPLOAD MODAL ───────────────────────── */
-  .upload-title { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
-  .upload-sub { color: var(--text-muted); font-size: 14px; margin-bottom: 24px; line-height: 1.5; }
-  .upload-area {
-    border: 2px dashed var(--border); border-radius: 12px; padding: 32px 20px;
-    text-align: center; cursor: pointer; transition: border-color .15s; margin-bottom: 16px;
-  }
+  /* END MODAL */
+  .end-title { font-size: 20px; font-weight: 700; margin-bottom: 6px; }
+  .end-sub { color: var(--text-muted); font-size: 14px; margin-bottom: 24px; }
+  .result-btns { display: flex; gap: 12px; margin-bottom: 24px; }
+  .result-btn { flex: 1; padding: 18px 12px; border-radius: 14px; border: 2px solid var(--border); background: var(--surface2); cursor: pointer; text-align: center; transition: all .15s; }
+  .result-btn .emoji { font-size: 32px; display: block; margin-bottom: 8px; }
+  .result-btn .label { font-size: 14px; font-weight: 600; color: var(--text-muted); }
+  .result-btn:hover { border-color: var(--accent); }
+  .result-btn.selected-failed { border-color: var(--security); background: var(--security-bg); }
+  .result-btn.selected-failed .label { color: var(--security); }
+  .result-btn.selected-passed { border-color: var(--hcsm); background: var(--hcsm-bg); }
+  .result-btn.selected-passed .label { color: var(--hcsm); }
+
+  .upload-section { border-top: 1px solid var(--border); padding-top: 20px; display: none; }
+  .upload-section.show { display: block; }
+  .upload-label { font-size: 14px; font-weight: 600; margin-bottom: 12px; color: var(--text); }
+  .upload-area { border: 2px dashed var(--border); border-radius: 12px; padding: 24px 20px; text-align: center; cursor: pointer; transition: border-color .15s; margin-bottom: 10px; }
   .upload-area:hover, .upload-area.drag { border-color: var(--accent); background: rgba(79,142,247,.05); }
-  .upload-area svg { margin: 0 auto 12px; display: block; opacity: .4; }
-  .upload-area p { font-size: 14px; color: var(--text-muted); }
+  .upload-area svg { margin: 0 auto 10px; display: block; opacity: .4; }
+  .upload-area p { font-size: 13px; color: var(--text-muted); }
   .upload-area p strong { color: var(--accent); }
   #fileInput { display: none; }
-  #fileName { font-size: 13px; color: var(--hcsm); margin-bottom: 16px; min-height: 18px; text-align: center; }
-  .btn-upload {
-    width: 100%; padding: 13px; background: var(--accent); color: #fff; border: none;
-    border-radius: 10px; font-size: 15px; font-weight: 600; cursor: pointer;
-    transition: opacity .15s; margin-bottom: 10px;
-  }
-  .btn-upload:hover { opacity: .88; }
-  .btn-upload:disabled { opacity: .4; cursor: not-allowed; }
-  .btn-cancel {
-    width: 100%; padding: 10px; background: transparent; color: var(--text-muted);
-    border: 1px solid var(--border); border-radius: 10px; font-size: 14px; cursor: pointer;
-  }
+  #fileName { font-size: 13px; color: var(--hcsm); margin-bottom: 12px; min-height: 18px; text-align: center; }
+  .btn-submit { width: 100%; padding: 13px; background: var(--accent); color: #fff; border: none; border-radius: 10px; font-size: 15px; font-weight: 600; cursor: pointer; transition: opacity .15s; margin-bottom: 10px; }
+  .btn-submit:hover { opacity: .88; }
+  .btn-submit:disabled { opacity: .4; cursor: not-allowed; }
+  .btn-cancel { width: 100%; padding: 10px; background: transparent; color: var(--text-muted); border: 1px solid var(--border); border-radius: 10px; font-size: 14px; cursor: pointer; }
   .btn-cancel:hover { border-color: var(--text-muted); color: var(--text); }
   #uploadStatus { font-size: 13px; text-align: center; margin-top: 10px; min-height: 18px; }
 
-  /* ── HEADER / MAIN ──────────────────────── */
+  /* MAIN */
   #mainView { display: none; }
-  header {
-    background: var(--surface); border-bottom: 1px solid var(--border); padding: 14px 24px;
-    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
-    position: sticky; top: 0; z-index: 100;
-  }
+  header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 14px 24px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; position: sticky; top: 0; z-index: 100; }
   .logo { font-size: 17px; font-weight: 700; color: var(--accent); white-space: nowrap; }
   .logo span { color: var(--text-muted); font-weight: 400; font-size: 12px; margin-left: 6px; }
   .header-user { font-size: 13px; color: var(--text-muted); }
@@ -123,13 +87,8 @@
   .cat-btn.active-General { border-color: var(--general); color: var(--general); background: var(--general-bg); }
   .cat-btn.active-Security { border-color: var(--security); color: var(--security); background: var(--security-bg); }
   .cat-btn.active-HCSM { border-color: var(--hcsm); color: var(--hcsm); background: var(--hcsm-bg); }
-  .btn-end {
-    padding: 7px 18px; background: var(--security-bg); color: var(--security);
-    border: 1px solid var(--security); border-radius: 8px; font-size: 13px; font-weight: 600;
-    cursor: pointer; transition: all .15s; white-space: nowrap;
-  }
+  .btn-end { padding: 7px 18px; background: var(--security-bg); color: var(--security); border: 1px solid var(--security); border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all .15s; white-space: nowrap; }
   .btn-end:hover { background: var(--security); color: #fff; }
-
   main { max-width: 860px; margin: 0 auto; padding: 24px 16px; }
   .search-wrap { position: relative; margin-bottom: 16px; }
   .search-wrap svg { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); opacity: .45; pointer-events: none; }
@@ -167,9 +126,7 @@
   <div class="login-box">
     <div class="login-logo">Litmos DB</div>
     <div class="login-sub">CSD twice per year <span style="color:var(--text-muted);font-size:11px">(or so they say)</span> <span style="color:var(--security);font-weight:700">ASS</span>essment Ref</div>
-    <div style="font-size:12px;color:var(--text-muted);margin-bottom:28px;margin-top:-16px">
-      crafted with questionable amounts of caffeine by <span style="color:var(--accent);font-weight:600">The Great Umar™</span> 👑
-    </div>
+    <div class="login-credit">crafted with questionable amounts of caffeine by <span style="color:var(--accent);font-weight:600">The Great Umar™</span> 👑</div>
     <label for="nameInput">Your name</label>
     <input id="nameInput" type="text" placeholder="Enter your name..." autocomplete="off" onkeydown="if(event.key==='Enter') doLogin()">
     <button class="btn-enter" onclick="doLogin()">Enter →</button>
@@ -192,24 +149,38 @@
   </div>
 </div>
 
-<!-- UPLOAD MODAL -->
-<div class="modal-overlay" id="uploadModal">
+<!-- END MODAL -->
+<div class="modal-overlay" id="endModal">
   <div class="modal-box">
-    <div class="upload-title">Upload Your Assessment PDF 📎</div>
-    <div class="upload-sub">Upload your assessment results so we can keep the Q&A bank updated. Takes 5 seconds, means everything to the team.</div>
-    <div class="upload-area" id="uploadArea" onclick="document.getElementById('fileInput').click()"
-      ondragover="event.preventDefault();this.classList.add('drag')"
-      ondragleave="this.classList.remove('drag')"
-      ondrop="handleDrop(event)">
-      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-      <p><strong>Click to browse</strong> or drag & drop here</p>
-      <p style="margin-top:4px;font-size:12px">PDF files only</p>
+    <div class="end-title">So... how'd it go? 👀</div>
+    <div class="end-sub">Be honest. No judgment here (ok maybe a little 😂)</div>
+    <div class="result-btns">
+      <div class="result-btn" id="btnFailed" onclick="selectResult('failed')">
+        <span class="emoji">😢</span>
+        <span class="label">Failed</span>
+      </div>
+      <div class="result-btn" id="btnPassed" onclick="selectResult('passed')">
+        <span class="emoji">🎉</span>
+        <span class="label">Passed!</span>
+      </div>
     </div>
-    <input type="file" id="fileInput" accept=".pdf" onchange="onFileSelect(this)">
-    <div id="fileName"></div>
-    <button class="btn-upload" id="btnUpload" onclick="uploadFile()" disabled>Upload to Drive</button>
-    <button class="btn-cancel" onclick="closeUpload()">Maybe later</button>
-    <div id="uploadStatus"></div>
+
+    <div class="upload-section" id="uploadSection">
+      <div class="upload-label">Now drop your PDF so we can keep the bank updated 🙏</div>
+      <div class="upload-area" id="uploadArea" onclick="document.getElementById('fileInput').click()"
+        ondragover="event.preventDefault();this.classList.add('drag')"
+        ondragleave="this.classList.remove('drag')"
+        ondrop="handleDrop(event)">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+        <p><strong>Click to browse</strong> or drag & drop</p>
+        <p style="margin-top:4px;font-size:12px">PDF files only</p>
+      </div>
+      <input type="file" id="fileInput" accept=".pdf" onchange="onFileSelect(this)">
+      <div id="fileName"></div>
+      <button class="btn-submit" id="btnSubmit" onclick="submitEnd()" disabled>Submit & Upload 🚀</button>
+      <button class="btn-cancel" onclick="skipUpload()">Nah, skip upload</button>
+      <div id="uploadStatus"></div>
+    </div>
   </div>
 </div>
 
@@ -225,10 +196,9 @@
         <button class="cat-btn" id="catSecurity" onclick="setCategory('Security')">Security</button>
         <button class="cat-btn" id="catHCSM" onclick="setCategory('HCSM')">HCSM</button>
       </div>
-      <button class="btn-end" onclick="openUpload()">END 🏁</button>
+      <button class="btn-end" onclick="openEnd()">END 🏁</button>
     </div>
   </header>
-
   <main>
     <div class="search-wrap">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
@@ -247,85 +217,127 @@
   </div>
 </div>
 
-<script src="questions.js"></script>
-<script>
-// ── CONFIG ──────────────────────────────────────────────
-// Replace with your Google Apps Script web app URL after setup
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, collection, addDoc, updateDoc, doc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyC6TbStfWv2lE3qvQxf8WMsUJNlhVMpc_Q",
+  authDomain: "brain-refresh-db364.firebaseapp.com",
+  projectId: "brain-refresh-db364",
+  storageBucket: "brain-refresh-db364.firebasestorage.app",
+  messagingSenderId: "179174675906",
+  appId: "1:179174675906:web:0d3bfb01216a1e78e8b25b"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
 const DRIVE_UPLOAD_URL = 'https://script.google.com/macros/s/AKfycbwZooAi58vB4JlvTvWB1jXtU0GXioaJo9sSz9zrOTFDfFCmcNdzDuJg5ZG-WbVPtDGQ/exec';
-// ────────────────────────────────────────────────────────
 
 let currentUser = '';
 let currentCategory = 'all';
 let selectedFile = null;
+let selectedResult = null;
+let sessionDocId = null;
 
-function doLogin() {
+// ── LOGIN ────────────────────────────────────────
+window.doLogin = async function() {
   const name = document.getElementById('nameInput').value.trim();
-  if (!name) {
-    document.getElementById('nameInput').style.borderColor = 'var(--security)';
-    return;
-  }
+  if (!name) { document.getElementById('nameInput').style.borderColor = 'var(--security)'; return; }
   currentUser = name;
+
+  try {
+    const docRef = await addDoc(collection(db, 'litmos_sessions'), {
+      username: name,
+      loginTime: serverTimestamp(),
+      result: null,
+      uploadedFile: null
+    });
+    sessionDocId = docRef.id;
+  } catch(e) { console.error('Firebase login error:', e); }
+
   document.getElementById('loginView').style.display = 'none';
   document.getElementById('welcomeGreeting').textContent = `Hi, Mr/Ms. ${name}! 👋`;
   document.getElementById('welcomeOutro').textContent = `OK now go search your keywords. Hope for the best, ${name}! 🫡`;
   document.getElementById('welcomeModal').classList.add('show');
-}
+};
 
-function closeWelcome() {
+window.closeWelcome = function() {
   document.getElementById('welcomeModal').classList.remove('show');
   document.getElementById('mainView').style.display = 'block';
   document.getElementById('headerName').textContent = currentUser;
   initSearch();
-}
+};
 
-function openUpload() {
-  document.getElementById('uploadModal').classList.add('show');
-}
-
-function closeUpload() {
-  document.getElementById('uploadModal').classList.remove('show');
-  document.getElementById('uploadStatus').textContent = '';
-  document.getElementById('fileName').textContent = '';
-  document.getElementById('btnUpload').disabled = true;
+// ── END / RESULT ─────────────────────────────────
+window.openEnd = function() {
+  selectedResult = null;
   selectedFile = null;
-}
+  document.getElementById('btnFailed').className = 'result-btn';
+  document.getElementById('btnPassed').className = 'result-btn';
+  document.getElementById('uploadSection').classList.remove('show');
+  document.getElementById('btnSubmit').disabled = true;
+  document.getElementById('fileName').textContent = '';
+  document.getElementById('uploadStatus').textContent = '';
+  document.getElementById('endModal').classList.add('show');
+};
 
-function handleDrop(e) {
+window.selectResult = function(result) {
+  selectedResult = result;
+  document.getElementById('btnFailed').className = 'result-btn' + (result === 'failed' ? ' selected-failed' : '');
+  document.getElementById('btnPassed').className = 'result-btn' + (result === 'passed' ? ' selected-passed' : '');
+  document.getElementById('uploadSection').classList.add('show');
+  updateSubmitBtn();
+};
+
+window.handleDrop = function(e) {
   e.preventDefault();
   document.getElementById('uploadArea').classList.remove('drag');
   const file = e.dataTransfer.files[0];
   if (file && file.type === 'application/pdf') setFile(file);
-}
+};
 
-function onFileSelect(input) {
+window.onFileSelect = function(input) {
   if (input.files[0]) setFile(input.files[0]);
-}
+};
 
 function setFile(file) {
   selectedFile = file;
   document.getElementById('fileName').textContent = '📄 ' + file.name;
-  document.getElementById('btnUpload').disabled = false;
-  document.getElementById('uploadStatus').textContent = '';
+  updateSubmitBtn();
 }
 
-function uploadFile() {
-  if (!selectedFile) return;
-  if (DRIVE_UPLOAD_URL === 'YOUR_APPS_SCRIPT_URL_HERE') {
-    document.getElementById('uploadStatus').innerHTML = '<span style="color:var(--highlight)">⚠️ Drive URL not configured yet. Pass the PDF to the admin manually for now.</span>';
-    return;
-  }
-  const btn = document.getElementById('btnUpload');
+function updateSubmitBtn() {
+  document.getElementById('btnSubmit').disabled = !(selectedResult && selectedFile);
+}
+
+window.submitEnd = async function() {
+  const btn = document.getElementById('btnSubmit');
   const status = document.getElementById('uploadStatus');
   btn.disabled = true;
   btn.textContent = 'Uploading...';
-  status.innerHTML = '<span style="color:var(--text-muted)">Uploading...</span>';
+  status.innerHTML = '<span style="color:var(--text-muted)">Saving...</span>';
+
+  // Save result to Firebase first
+  if (sessionDocId) {
+    try {
+      await updateDoc(doc(db, 'litmos_sessions', sessionDocId), {
+        result: selectedResult,
+        uploadedFile: selectedFile ? selectedFile.name : null,
+        submittedAt: serverTimestamp()
+      });
+    } catch(e) { console.error('Firebase update error:', e); }
+  }
+
+  // Upload PDF to Drive
   const reader = new FileReader();
   reader.onload = function(e) {
     const base64 = e.target.result.split(',')[1];
     fetch(DRIVE_UPLOAD_URL, {
       method: 'POST',
       body: JSON.stringify({
-        fileName: `[${currentUser}] ${selectedFile.name}`,
+        fileName: `[${currentUser}][${selectedResult.toUpperCase()}] ${selectedFile.name}`,
         mimeType: 'application/pdf',
         data: base64
       })
@@ -333,23 +345,35 @@ function uploadFile() {
     .then(r => r.json())
     .then(res => {
       if (res.status === 'ok') {
-        status.innerHTML = '<span style="color:var(--hcsm)">✓ Uploaded! Thanks, you legend 🙏</span>';
+        const msg = selectedResult === 'passed'
+          ? '🎉 Congrats legend! PDF uploaded. Go celebrate!'
+          : '😢 Tough luck bro. PDF uploaded. Study harder next time 💪';
+        status.innerHTML = `<span style="color:var(--hcsm)">${msg}</span>`;
         btn.textContent = 'Done ✓';
-      } else {
-        throw new Error(res.message || 'Upload failed');
-      }
+      } else throw new Error(res.message || 'Upload failed');
     })
     .catch(err => {
       status.innerHTML = `<span style="color:var(--security)">Upload failed: ${err.message}</span>`;
-      btn.disabled = false;
-      btn.textContent = 'Upload to Drive';
+      btn.disabled = false; btn.textContent = 'Submit & Upload 🚀';
     });
   };
   reader.readAsDataURL(selectedFile);
-}
+};
 
-// ── SEARCH ──────────────────────────────────────────────
-function setCategory(cat) {
+window.skipUpload = async function() {
+  if (selectedResult && sessionDocId) {
+    try {
+      await updateDoc(doc(db, 'litmos_sessions', sessionDocId), {
+        result: selectedResult,
+        submittedAt: serverTimestamp()
+      });
+    } catch(e) {}
+  }
+  document.getElementById('endModal').classList.remove('show');
+};
+
+// ── SEARCH ────────────────────────────────────────
+window.setCategory = function(cat) {
   currentCategory = cat;
   ['All','General','Security','HCSM'].forEach(c => {
     const btn = document.getElementById('cat' + c);
@@ -358,15 +382,13 @@ function setCategory(cat) {
       btn.className = 'cat-btn active-' + (c === 'All' ? 'all' : c);
   });
   onSearch();
-}
+};
 
 function getFiltered() {
   return currentCategory === 'all' ? QUESTIONS : QUESTIONS.filter(q => q.category === currentCategory);
 }
 
-function escape(s) {
-  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-}
+function escape(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
 function highlight(text, term) {
   const escaped = escape(text);
@@ -377,29 +399,23 @@ function highlight(text, term) {
 
 function renderAnswer(answer, term) {
   const parts = answer.split(' | ').map(s => s.trim()).filter(Boolean);
-  if (parts.length <= 1)
-    return `<div class="answer-text">${highlight(answer, term)}</div>`;
+  if (parts.length <= 1) return `<div class="answer-text">${highlight(answer, term)}</div>`;
   return `<div class="answer-items">${parts.map(p => `<div class="answer-item">${highlight(p, term)}</div>`).join('')}</div>`;
 }
 
-function onSearch() {
+window.onSearch = function() {
   const term = document.getElementById('searchInput').value.trim().toLowerCase();
   let pool = getFiltered();
   if (term) pool = pool.filter(q => q.question.toLowerCase().includes(term) || q.answer.toLowerCase().includes(term));
-
-  const g = pool.filter(q => q.category === 'General').length;
-  const s = pool.filter(q => q.category === 'Security').length;
-  const h = pool.filter(q => q.category === 'HCSM').length;
-  document.getElementById('resultCount').textContent = pool.length + ' question' + (pool.length !== 1 ? 's' : '');
+  const g = pool.filter(q => q.category==='General').length;
+  const s = pool.filter(q => q.category==='Security').length;
+  const h = pool.filter(q => q.category==='HCSM').length;
+  document.getElementById('resultCount').textContent = pool.length + ' question' + (pool.length!==1?'s':'');
   document.getElementById('countG').textContent = g;
   document.getElementById('countS').textContent = s;
   document.getElementById('countH').textContent = h;
-
   const resultsEl = document.getElementById('results');
-  if (pool.length === 0) {
-    resultsEl.innerHTML = `<div class="empty-state">No questions found for "<strong>${escape(term)}</strong>"</div>`;
-    return;
-  }
+  if (!pool.length) { resultsEl.innerHTML = `<div class="empty-state">No questions found for "<strong>${escape(term)}</strong>"</div>`; return; }
   const display = term ? pool : pool.slice(0, 50);
   resultsEl.innerHTML = display.map(q => `
     <div class="card">
@@ -412,14 +428,13 @@ function onSearch() {
         ${renderAnswer(q.answer, term)}
       </div>
     </div>`).join('');
-  if (!term && pool.length > 50)
-    resultsEl.innerHTML += `<div class="more-hint">Showing 50 of ${pool.length}. Type to search.</div>`;
-}
+  if (!term && pool.length > 50) resultsEl.innerHTML += `<div class="more-hint">Showing 50 of ${pool.length}. Type to search.</div>`;
+};
 
 function initSearch() {
-  const g = QUESTIONS.filter(q => q.category === 'General').length;
-  const s = QUESTIONS.filter(q => q.category === 'Security').length;
-  const h = QUESTIONS.filter(q => q.category === 'HCSM').length;
+  const g = QUESTIONS.filter(q => q.category==='General').length;
+  const s = QUESTIONS.filter(q => q.category==='Security').length;
+  const h = QUESTIONS.filter(q => q.category==='HCSM').length;
   document.getElementById('resultCount').textContent = QUESTIONS.length + ' questions';
   document.getElementById('countG').textContent = g;
   document.getElementById('countS').textContent = s;
@@ -427,5 +442,6 @@ function initSearch() {
   onSearch();
 }
 </script>
+<script src="questions.js"></script>
 </body>
 </html>
