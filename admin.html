@@ -57,6 +57,19 @@
   .empty-row td { text-align: center; padding: 40px; color: var(--text-muted); }
   .loading { text-align: center; padding: 60px; color: var(--text-muted); }
 
+  /* SETTINGS */
+  .settings-wrap { padding: 0 24px 40px; }
+  .settings-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 24px 28px; max-width: 480px; }
+  .settings-card h2 { font-size: 16px; font-weight: 700; margin-bottom: 20px; }
+  .settings-row { margin-bottom: 16px; }
+  .settings-row label { display: block; font-size: 12px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: .05em; margin-bottom: 6px; }
+  .settings-row input { width: 100%; padding: 10px 14px; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-size: 14px; outline: none; transition: border-color .15s; }
+  .settings-row input:focus { border-color: var(--accent); }
+  .settings-row .hint { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
+  .btn-save { padding: 10px 24px; background: var(--accent); color: #fff; border: none; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: opacity .15s; }
+  .btn-save:hover { opacity: .88; }
+  #settingsStatus { font-size: 13px; margin-top: 12px; min-height: 18px; }
+
   ::-webkit-scrollbar { width: 6px; height: 6px; }
   ::-webkit-scrollbar-track { background: transparent; }
   ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
@@ -93,11 +106,30 @@
   <div class="table-wrap">
     <div id="tableContainer" class="loading">Loading data...</div>
   </div>
+
+  <!-- Settings -->
+  <div class="settings-wrap">
+    <div class="settings-card">
+      <h2>⚙️ Settings</h2>
+      <div class="settings-row">
+        <label>App Access Code</label>
+        <input type="text" id="newAppCode" placeholder="New access code...">
+        <div class="hint">This is what users enter on the login page</div>
+      </div>
+      <div class="settings-row">
+        <label>Admin Password</label>
+        <input type="password" id="newAdminPass" placeholder="New admin password...">
+        <div class="hint">Password to access this admin page</div>
+      </div>
+      <button class="btn-save" onclick="saveSettings()">Save Changes</button>
+      <div id="settingsStatus"></div>
+    </div>
+  </div>
 </div>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getFirestore, collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { getFirestore, collection, getDocs, query, orderBy, getDoc, setDoc, doc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyC6TbStfWv2lE3qvQxf8WMsUJNlhVMpc_Q",
@@ -111,17 +143,69 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-const ADMIN_PASSWORD = 'csd2026';
+const FALLBACK_ADMIN_PW = 'csd2026';
+const FALLBACK_APP_CODE = '70133068';
 
-window.adminLogin = function() {
+window.adminLogin = async function() {
   const pass = document.getElementById('adminPass').value;
-  if (pass === ADMIN_PASSWORD) {
+  const errEl = document.getElementById('loginError');
+  errEl.textContent = 'Checking...';
+
+  let adminPw = FALLBACK_ADMIN_PW;
+  try {
+    const configSnap = await getDoc(doc(db, 'litmos_config', 'settings'));
+    if (configSnap.exists() && configSnap.data().adminPassword) adminPw = configSnap.data().adminPassword;
+  } catch(e) {}
+
+  if (pass === adminPw) {
     document.getElementById('loginView').style.display = 'none';
     document.getElementById('dashView').style.display = 'block';
     loadData();
+    loadSettings();
   } else {
-    document.getElementById('loginError').textContent = 'Wrong password. Nice try 😏';
+    errEl.textContent = 'Wrong password. Nice try 😏';
     document.getElementById('adminPass').style.borderColor = 'var(--security)';
+  }
+};
+
+async function loadSettings() {
+  try {
+    const configSnap = await getDoc(doc(db, 'litmos_config', 'settings'));
+    if (configSnap.exists()) {
+      const d = configSnap.data();
+      if (d.appCode) document.getElementById('newAppCode').placeholder = `Current: ${d.appCode}`;
+    }
+  } catch(e) {}
+}
+
+window.saveSettings = async function() {
+  const newCode = document.getElementById('newAppCode').value.trim();
+  const newPass = document.getElementById('newAdminPass').value.trim();
+  const status = document.getElementById('settingsStatus');
+
+  if (!newCode && !newPass) {
+    status.innerHTML = '<span style="color:var(--security)">Fill in at least one field to update.</span>';
+    return;
+  }
+
+  const updates = {};
+  if (newCode) updates.appCode = newCode;
+  if (newPass) updates.adminPassword = newPass;
+
+  try {
+    const configRef = doc(db, 'litmos_config', 'settings');
+    const existing = await getDoc(configRef);
+    if (existing.exists()) {
+      await setDoc(configRef, { ...existing.data(), ...updates });
+    } else {
+      await setDoc(configRef, { appCode: FALLBACK_APP_CODE, adminPassword: FALLBACK_ADMIN_PW, ...updates });
+    }
+    status.innerHTML = '<span style="color:var(--hcsm)">Saved! Changes take effect immediately ✓</span>';
+    document.getElementById('newAppCode').value = '';
+    document.getElementById('newAdminPass').value = '';
+    if (updates.appCode) document.getElementById('newAppCode').placeholder = `Current: ${updates.appCode}`;
+  } catch(e) {
+    status.innerHTML = `<span style="color:var(--security)">Error: ${e.message}</span>`;
   }
 };
 

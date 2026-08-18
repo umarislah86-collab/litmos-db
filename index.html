@@ -247,7 +247,7 @@
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getFirestore, collection, addDoc, updateDoc, doc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { getFirestore, collection, addDoc, updateDoc, doc, getDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyC6TbStfWv2lE3qvQxf8WMsUJNlhVMpc_Q",
@@ -277,7 +277,14 @@ window.doLogin = async function() {
   const errEl = document.getElementById('loginError');
   errEl.textContent = '';
   if (!name) { document.getElementById('nameInput').style.borderColor = 'var(--security)'; errEl.textContent = 'Please enter your name.'; return; }
-  if (code !== '70133068') { document.getElementById('codeInput').style.borderColor = 'var(--security)'; errEl.textContent = 'Wrong access code. Ask Umar lah 😏'; return; }
+
+  let appCode = '70133068';
+  try {
+    const configSnap = await getDoc(doc(db, 'litmos_config', 'settings'));
+    if (configSnap.exists() && configSnap.data().appCode) appCode = configSnap.data().appCode;
+  } catch(e) {}
+
+  if (code !== appCode) { document.getElementById('codeInput').style.borderColor = 'var(--security)'; errEl.textContent = 'Wrong access code. Ask Umar lah 😏'; return; }
   currentUser = name;
 
   try {
