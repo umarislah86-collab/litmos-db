@@ -31,7 +31,7 @@
   /* MODAL */
   .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.65); backdrop-filter: blur(4px); z-index: 200; align-items: center; justify-content: center; padding: 20px; }
   .modal-overlay.show { display: flex; }
-  .modal-box { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 36px 32px; max-width: 500px; width: 100%; box-shadow: 0 24px 60px rgba(0,0,0,.5); animation: popIn .2s ease; }
+  .modal-box { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 36px 32px; max-width: 500px; width: 100%; box-shadow: 0 24px 60px rgba(0,0,0,.5); animation: popIn .2s ease; max-height: 90vh; overflow-y: auto; }
   @keyframes popIn { from { transform: scale(.92); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
   /* WELCOME MODAL */
@@ -72,6 +72,16 @@
   .btn-cancel { width: 100%; padding: 10px; background: transparent; color: var(--text-muted); border: 1px solid var(--border); border-radius: 10px; font-size: 14px; cursor: pointer; }
   .btn-cancel:hover { border-color: var(--text-muted); color: var(--text); }
   #uploadStatus { font-size: 13px; text-align: center; margin-top: 10px; min-height: 18px; }
+  .feedback-divider { border: none; border-top: 1px solid var(--border); margin: 20px 0 16px; }
+  .btn-feedback-toggle { width: 100%; padding: 10px; background: transparent; color: var(--accent); border: 1px dashed rgba(79,142,247,.4); border-radius: 10px; font-size: 14px; cursor: pointer; transition: all .15s; }
+  .btn-feedback-toggle:hover { border-color: var(--accent); background: rgba(79,142,247,.06); }
+  .feedback-form { margin-top: 14px; display: none; }
+  .feedback-form.show { display: block; }
+  .feedback-form textarea { width: 100%; padding: 10px 12px; background: var(--bg); border: 1px solid var(--border); border-radius: 10px; color: var(--text); font-size: 14px; resize: vertical; outline: none; font-family: inherit; transition: border-color .15s; margin-bottom: 10px; }
+  .feedback-form textarea:focus { border-color: var(--accent); }
+  .feedback-attach { border: 2px dashed var(--border); border-radius: 10px; padding: 12px; text-align: center; cursor: pointer; transition: border-color .15s; font-size: 13px; color: var(--text-muted); margin-bottom: 8px; }
+  .feedback-attach:hover { border-color: var(--accent); }
+  .feedback-attach strong { color: var(--accent); }
 
   /* MAIN */
   #mainView { display: none; }
@@ -181,6 +191,21 @@
       <button class="btn-cancel" onclick="skipUpload()">Nah, skip upload</button>
       <div id="uploadStatus"></div>
     </div>
+
+    <!-- Feedback -->
+    <hr class="feedback-divider">
+    <button class="btn-feedback-toggle" onclick="toggleFeedback()">💬 Got feedback or found a bug?</button>
+    <div class="feedback-form" id="feedbackForm">
+      <div style="font-size:13px;color:var(--text-muted);margin-bottom:8px">Bug? Suggestion? Just want to roast the app? All welcome 😂</div>
+      <textarea id="feedbackComment" rows="3" placeholder="Type here..."></textarea>
+      <div class="feedback-attach" onclick="document.getElementById('feedbackFileInput').click()">
+        <strong>📎 Attach screenshot</strong> or any file (optional)
+      </div>
+      <input type="file" id="feedbackFileInput" onchange="onFeedbackFile(this)" style="display:none">
+      <div id="feedbackFileName" style="font-size:13px;color:var(--hcsm);min-height:16px;margin-bottom:8px"></div>
+      <button class="btn-submit" id="btnFeedback" onclick="submitFeedback()">Send Feedback 🚀</button>
+      <div id="feedbackStatus" style="font-size:13px;text-align:center;margin-top:8px;min-height:16px"></div>
+    </div>
   </div>
 </div>
 
@@ -240,6 +265,7 @@ let currentCategory = 'all';
 let selectedFile = null;
 let selectedResult = null;
 let sessionDocId = null;
+let selectedFeedbackFile = null;
 
 // ── LOGIN ────────────────────────────────────────
 window.doLogin = async function() {
@@ -274,12 +300,19 @@ window.closeWelcome = function() {
 window.openEnd = function() {
   selectedResult = null;
   selectedFile = null;
+  selectedFeedbackFile = null;
   document.getElementById('btnFailed').className = 'result-btn';
   document.getElementById('btnPassed').className = 'result-btn';
   document.getElementById('uploadSection').classList.remove('show');
   document.getElementById('btnSubmit').disabled = true;
   document.getElementById('fileName').textContent = '';
   document.getElementById('uploadStatus').textContent = '';
+  document.getElementById('feedbackForm').classList.remove('show');
+  document.getElementById('feedbackComment').value = '';
+  document.getElementById('feedbackFileName').textContent = '';
+  document.getElementById('feedbackStatus').textContent = '';
+  document.getElementById('btnFeedback').disabled = false;
+  document.getElementById('btnFeedback').textContent = 'Send Feedback 🚀';
   document.getElementById('endModal').classList.add('show');
 };
 
@@ -370,6 +403,62 @@ window.skipUpload = async function() {
     } catch(e) {}
   }
   document.getElementById('endModal').classList.remove('show');
+};
+
+// ── FEEDBACK ─────────────────────────────────────
+window.toggleFeedback = function() {
+  document.getElementById('feedbackForm').classList.toggle('show');
+};
+
+window.onFeedbackFile = function(input) {
+  if (input.files[0]) {
+    selectedFeedbackFile = input.files[0];
+    document.getElementById('feedbackFileName').textContent = '📎 ' + input.files[0].name;
+  }
+};
+
+window.submitFeedback = async function() {
+  const comment = document.getElementById('feedbackComment').value.trim();
+  if (!comment && !selectedFeedbackFile) {
+    document.getElementById('feedbackStatus').innerHTML = '<span style="color:var(--security)">Type something or attach a file first 😅</span>';
+    return;
+  }
+  const btn = document.getElementById('btnFeedback');
+  const status = document.getElementById('feedbackStatus');
+  btn.disabled = true; btn.textContent = 'Sending...';
+
+  const feedbackData = {
+    comment: comment || null,
+    attachmentName: selectedFeedbackFile ? selectedFeedbackFile.name : null,
+    feedbackAt: serverTimestamp()
+  };
+
+  try {
+    if (sessionDocId) {
+      await updateDoc(doc(db, 'litmos_sessions', sessionDocId), { feedback: feedbackData });
+    } else {
+      await addDoc(collection(db, 'litmos_feedback'), { username: currentUser || 'anonymous', ...feedbackData });
+    }
+  } catch(e) { console.error('Feedback error:', e); }
+
+  if (selectedFeedbackFile) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const base64 = e.target.result.split(',')[1];
+      fetch(DRIVE_UPLOAD_URL, {
+        method: 'POST',
+        body: JSON.stringify({
+          fileName: `[FEEDBACK][${currentUser}] ${selectedFeedbackFile.name}`,
+          mimeType: selectedFeedbackFile.type || 'application/octet-stream',
+          data: base64
+        })
+      }).catch(() => {});
+    };
+    reader.readAsDataURL(selectedFeedbackFile);
+  }
+
+  status.innerHTML = '<span style="color:var(--hcsm)">Feedback received! Thanks bro 🙏</span>';
+  btn.textContent = 'Sent ✓';
 };
 
 // ── SEARCH ────────────────────────────────────────

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Litmos Admin</title>
+<style>
+  :root {
+    --bg: #0f1117; --surface: #1a1d27; --surface2: #22263a; --border: #2e3248;
+    --text: #e2e8f0; --text-muted: #8892a4; --accent: #4f8ef7;
+    --security: #ef4444; --hcsm: #10b981; --warn: #f59e0b;
+    --security-bg: rgba(239,68,68,0.12); --hcsm-bg: rgba(16,185,129,0.12);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; min-height: 100vh; }
+
+  /* LOGIN */
+  #loginView { min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+  .login-box { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 40px 36px; width: 100%; max-width: 380px; text-align: center; }
+  .login-box h1 { font-size: 22px; font-weight: 700; color: var(--accent); margin-bottom: 6px; }
+  .login-box p { font-size: 13px; color: var(--text-muted); margin-bottom: 28px; }
+  .login-box input { width: 100%; padding: 12px 16px; background: var(--bg); border: 1px solid var(--border); border-radius: 10px; color: var(--text); font-size: 15px; outline: none; margin-bottom: 12px; transition: border-color .15s; }
+  .login-box input:focus { border-color: var(--accent); }
+  .login-box button { width: 100%; padding: 12px; background: var(--accent); color: #fff; border: none; border-radius: 10px; font-size: 15px; font-weight: 600; cursor: pointer; }
+  .login-box button:hover { opacity: .88; }
+  #loginError { font-size: 13px; color: var(--security); margin-top: 10px; min-height: 18px; }
+
+  /* DASHBOARD */
+  #dashView { display: none; }
+  .dash-header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 16px 24px; display: flex; align-items: center; gap: 16px; }
+  .dash-header h1 { font-size: 18px; font-weight: 700; color: var(--accent); }
+  .dash-header span { font-size: 13px; color: var(--text-muted); }
+  .refresh-btn { margin-left: auto; padding: 7px 16px; background: transparent; border: 1px solid var(--border); border-radius: 8px; color: var(--text-muted); cursor: pointer; font-size: 13px; transition: all .15s; }
+  .refresh-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+  .stats-row { display: flex; gap: 12px; padding: 20px 24px; flex-wrap: wrap; }
+  .stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px 20px; min-width: 130px; }
+  .stat-card .val { font-size: 28px; font-weight: 700; line-height: 1; margin-bottom: 4px; }
+  .stat-card .lbl { font-size: 12px; color: var(--text-muted); }
+  .stat-card.passed .val { color: var(--hcsm); }
+  .stat-card.failed .val { color: var(--security); }
+  .stat-card.feedback-stat .val { color: var(--warn); }
+
+  .table-wrap { padding: 0 24px 40px; overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  thead tr { background: var(--surface2); }
+  th { padding: 10px 14px; text-align: left; font-weight: 600; color: var(--text-muted); font-size: 12px; text-transform: uppercase; letter-spacing: .05em; border-bottom: 1px solid var(--border); white-space: nowrap; }
+  td { padding: 10px 14px; border-bottom: 1px solid rgba(46,50,72,.5); vertical-align: top; }
+  tr:hover td { background: rgba(79,142,247,.04); }
+  .badge { display: inline-block; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 8px; white-space: nowrap; }
+  .badge-passed { background: var(--hcsm-bg); color: var(--hcsm); }
+  .badge-failed { background: var(--security-bg); color: var(--security); }
+  .badge-pending { background: rgba(100,100,120,.2); color: var(--text-muted); }
+  .feedback-cell { max-width: 220px; }
+  .feedback-comment { color: var(--text); margin-bottom: 3px; }
+  .feedback-attach { font-size: 11px; color: var(--accent); }
+  .empty-row td { text-align: center; padding: 40px; color: var(--text-muted); }
+  .loading { text-align: center; padding: 60px; color: var(--text-muted); }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="loginView">
+  <div class="login-box">
+    <h1>🔒 Litmos Admin</h1>
+    <p>For The Great Umar™ eyes only 👑</p>
+    <input type="password" id="adminPass" placeholder="Password" onkeydown="if(event.key==='Enter') adminLogin()">
+    <button onclick="adminLogin()">Enter</button>
+    <div id="loginError"></div>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashView">
+  <div class="dash-header">
+    <h1>Litmos Admin</h1>
+    <span>litmos_sessions collection</span>
+    <button class="refresh-btn" onclick="loadData()">↺ Refresh</button>
+  </div>
+
+  <div class="stats-row" id="statsRow">
+    <div class="stat-card"><div class="val" id="statTotal">—</div><div class="lbl">Total Sessions</div></div>
+    <div class="stat-card passed"><div class="val" id="statPassed">—</div><div class="lbl">Passed 🎉</div></div>
+    <div class="stat-card failed"><div class="val" id="statFailed">—</div><div class="lbl">Failed 😢</div></div>
+    <div class="stat-card feedback-stat"><div class="val" id="statFeedback">—</div><div class="lbl">With Feedback</div></div>
+  </div>
+
+  <div class="table-wrap">
+    <div id="tableContainer" class="loading">Loading data...</div>
+  </div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyC6TbStfWv2lE3qvQxf8WMsUJNlhVMpc_Q",
+  authDomain: "brain-refresh-db364.firebaseapp.com",
+  projectId: "brain-refresh-db364",
+  storageBucket: "brain-refresh-db364.firebasestorage.app",
+  messagingSenderId: "179174675906",
+  appId: "1:179174675906:web:0d3bfb01216a1e78e8b25b"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const ADMIN_PASSWORD = 'csd2026';
+
+window.adminLogin = function() {
+  const pass = document.getElementById('adminPass').value;
+  if (pass === ADMIN_PASSWORD) {
+    document.getElementById('loginView').style.display = 'none';
+    document.getElementById('dashView').style.display = 'block';
+    loadData();
+  } else {
+    document.getElementById('loginError').textContent = 'Wrong password. Nice try 😏';
+    document.getElementById('adminPass').style.borderColor = 'var(--security)';
+  }
+};
+
+function fmtTime(ts) {
+  if (!ts) return '—';
+  const d = ts.toDate ? ts.toDate() : new Date(ts.seconds * 1000);
+  return d.toLocaleString('en-MY', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+}
+
+function fmtDuration(login, submitted) {
+  if (!login || !submitted) return '—';
+  const secs = submitted.seconds - login.seconds;
+  if (secs < 0) return '—';
+  const m = Math.floor(secs / 60);
+  const s = secs % 60;
+  return m > 0 ? `${m}m ${s}s` : `${s}s`;
+}
+
+function escape(s) { return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+window.loadData = async function() {
+  document.getElementById('tableContainer').innerHTML = '<div class="loading">Loading data...</div>';
+  try {
+    const q = query(collection(db, 'litmos_sessions'), orderBy('loginTime', 'desc'));
+    const snap = await getDocs(q);
+    const rows = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+
+    const passed = rows.filter(r => r.result === 'passed').length;
+    const failed = rows.filter(r => r.result === 'failed').length;
+    const withFeedback = rows.filter(r => r.feedback && (r.feedback.comment || r.feedback.attachmentName)).length;
+
+    document.getElementById('statTotal').textContent = rows.length;
+    document.getElementById('statPassed').textContent = passed;
+    document.getElementById('statFailed').textContent = failed;
+    document.getElementById('statFeedback').textContent = withFeedback;
+
+    if (!rows.length) {
+      document.getElementById('tableContainer').innerHTML = '<table><tbody><tr class="empty-row"><td colspan="7">No sessions yet. Tell people to use the app 😤</td></tr></tbody></table>';
+      return;
+    }
+
+    const tableHtml = `
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Username</th>
+            <th>Login Time</th>
+            <th>Duration</th>
+            <th>Result</th>
+            <th>File Uploaded</th>
+            <th>Feedback</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${rows.map((r, i) => {
+            const resultBadge = r.result
+              ? `<span class="badge badge-${r.result}">${r.result === 'passed' ? '🎉 Passed' : '😢 Failed'}</span>`
+              : `<span class="badge badge-pending">pending</span>`;
+            const file = r.uploadedFile ? `📄 ${escape(r.uploadedFile)}` : '<span style="color:var(--text-muted)">—</span>';
+            let feedbackHtml = '<span style="color:var(--text-muted)">—</span>';
+            if (r.feedback && (r.feedback.comment || r.feedback.attachmentName)) {
+              feedbackHtml = `<div class="feedback-cell">`;
+              if (r.feedback.comment) feedbackHtml += `<div class="feedback-comment">${escape(r.feedback.comment)}</div>`;
+              if (r.feedback.attachmentName) feedbackHtml += `<div class="feedback-attach">📎 ${escape(r.feedback.attachmentName)}</div>`;
+              feedbackHtml += `</div>`;
+            }
+            return `<tr>
+              <td style="color:var(--text-muted)">${rows.length - i}</td>
+              <td style="font-weight:600">${escape(r.username)}</td>
+              <td style="color:var(--text-muted);white-space:nowrap">${fmtTime(r.loginTime)}</td>
+              <td style="white-space:nowrap">${fmtDuration(r.loginTime, r.submittedAt)}</td>
+              <td>${resultBadge}</td>
+              <td style="font-size:12px;max-width:180px;word-break:break-all">${file}</td>
+              <td>${feedbackHtml}</td>
+            </tr>`;
+          }).join('')}
+        </tbody>
+      </table>`;
+
+    document.getElementById('tableContainer').innerHTML = tableHtml;
+  } catch(e) {
+    document.getElementById('tableContainer').innerHTML = `<div class="loading" style="color:var(--security)">Error loading data: ${e.message}</div>`;
+  }
+};
+</script>
+</body>
+</html>
