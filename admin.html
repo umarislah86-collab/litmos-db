@@ -243,15 +243,22 @@ window.loadData = async function() {
     document.getElementById('statFeedback').textContent = withFeedback;
 
     if (!rows.length) {
-      document.getElementById('tableContainer').innerHTML = '<table><tbody><tr class="empty-row"><td colspan="7">No sessions yet. Tell people to use the app 😤</td></tr></tbody></table>';
+      document.getElementById('tableContainer').innerHTML = '<table><tbody><tr class="empty-row"><td colspan="6">No sessions yet. Tell people to use the app 😤</td></tr></tbody></table>';
       return;
     }
+
+    // Group by username
+    const grouped = {};
+    rows.forEach(r => {
+      const key = (r.username || 'unknown').toLowerCase();
+      if (!grouped[key]) grouped[key] = { name: r.username, sessions: [] };
+      grouped[key].sessions.push(r);
+    });
 
     const tableHtml = `
       <table>
         <thead>
           <tr>
-            <th>#</th>
             <th>Username</th>
             <th>Login Time</th>
             <th>Duration</th>
@@ -261,27 +268,38 @@ window.loadData = async function() {
           </tr>
         </thead>
         <tbody>
-          ${rows.map((r, i) => {
-            const resultBadge = r.result
-              ? `<span class="badge badge-${r.result}">${r.result === 'passed' ? '🎉 Passed' : '😢 Failed'}</span>`
-              : `<span class="badge badge-pending">pending</span>`;
-            const file = r.uploadedFile ? `📄 ${escape(r.uploadedFile)}` : '<span style="color:var(--text-muted)">—</span>';
-            let feedbackHtml = '<span style="color:var(--text-muted)">—</span>';
-            if (r.feedback && (r.feedback.comment || r.feedback.attachmentName)) {
-              feedbackHtml = `<div class="feedback-cell">`;
-              if (r.feedback.comment) feedbackHtml += `<div class="feedback-comment">${escape(r.feedback.comment)}</div>`;
-              if (r.feedback.attachmentName) feedbackHtml += `<div class="feedback-attach">📎 ${escape(r.feedback.attachmentName)}</div>`;
-              feedbackHtml += `</div>`;
-            }
-            return `<tr>
-              <td style="color:var(--text-muted)">${rows.length - i}</td>
-              <td style="font-weight:600">${escape(r.username)}</td>
-              <td style="color:var(--text-muted);white-space:nowrap">${fmtTime(r.loginTime)}</td>
-              <td style="white-space:nowrap">${fmtDuration(r.loginTime, r.submittedAt)}</td>
-              <td>${resultBadge}</td>
-              <td style="font-size:12px;max-width:180px;word-break:break-all">${file}</td>
-              <td>${feedbackHtml}</td>
-            </tr>`;
+          ${Object.values(grouped).map(group => {
+            const count = group.sessions.length;
+            return group.sessions.map((r, si) => {
+              const resultBadge = r.result
+                ? `<span class="badge badge-${r.result}">${r.result === 'passed' ? '🎉 Passed' : '😢 Failed'}</span>`
+                : `<span class="badge badge-pending">pending</span>`;
+              const file = r.uploadedFile ? `📄 ${escape(r.uploadedFile)}` : '<span style="color:var(--text-muted)">—</span>';
+              let feedbackHtml = '<span style="color:var(--text-muted)">—</span>';
+              if (r.feedback && (r.feedback.comment || r.feedback.attachmentName)) {
+                feedbackHtml = `<div class="feedback-cell">`;
+                if (r.feedback.comment) feedbackHtml += `<div class="feedback-comment">${escape(r.feedback.comment)}</div>`;
+                if (r.feedback.attachmentName) feedbackHtml += `<div class="feedback-attach">📎 ${escape(r.feedback.attachmentName)}</div>`;
+                feedbackHtml += `</div>`;
+              }
+              const isFirst = si === 0;
+              const isLast = si === count - 1;
+              const nameTd = isFirst
+                ? `<td rowspan="${count}" style="font-weight:700;vertical-align:middle;border-right:1px solid var(--border)">
+                    ${escape(group.name)}
+                    ${count > 1 ? `<div style="font-size:11px;color:var(--text-muted);font-weight:400;margin-top:2px">${count} sessions</div>` : ''}
+                   </td>`
+                : '';
+              const rowStyle = isLast ? '' : 'border-bottom:1px dashed rgba(46,50,72,.3)';
+              return `<tr style="${rowStyle}">
+                ${nameTd}
+                <td style="color:var(--text-muted);white-space:nowrap">${fmtTime(r.loginTime)}</td>
+                <td style="white-space:nowrap">${fmtDuration(r.loginTime, r.submittedAt)}</td>
+                <td>${resultBadge}</td>
+                <td style="font-size:12px;max-width:180px;word-break:break-all">${file}</td>
+                <td>${feedbackHtml}</td>
+              </tr>`;
+            }).join('');
           }).join('')}
         </tbody>
       </table>`;
