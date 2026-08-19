@@ -103,7 +103,11 @@
   .btn-training { padding: 7px 16px; background: rgba(79,142,247,.1); color: var(--accent); border: 1px solid rgba(79,142,247,.3); border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all .15s; white-space: nowrap; }
   .btn-training:hover { background: rgba(79,142,247,.2); border-color: var(--accent); }
   main { max-width: 860px; margin: 0 auto; padding: 24px 16px; }
-  .search-wrap { position: sticky; top: 57px; z-index: 90; background: var(--bg); padding: 8px 0; margin-bottom: 8px; }
+  .search-bar-wrap { position: sticky; top: 57px; z-index: 90; background: var(--bg); padding: 8px 0 2px; margin-bottom: 8px; }
+  .search-wrap { position: relative; margin-bottom: 4px; }
+  .training-search-link { text-align: right; padding-bottom: 2px; }
+  .training-search-link button { background: none; border: none; color: var(--text-muted); font-size: 12px; cursor: pointer; padding: 0; transition: color .15s; }
+  .training-search-link button:hover { color: var(--accent); }
   .search-wrap svg { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); opacity: .45; pointer-events: none; }
   #searchInput { width: 100%; padding: 13px 16px 13px 44px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; color: var(--text); font-size: 15px; outline: none; transition: border-color .15s; }
   #searchInput:focus { border-color: var(--accent); }
@@ -264,14 +268,18 @@
         <button class="cat-btn" id="catSecurity" onclick="setCategory('Security')">Security</button>
         <button class="cat-btn" id="catHCSM" onclick="setCategory('HCSM')">HCSM</button>
       </div>
-      <button class="btn-training" onclick="openTraining('')">📚 Training</button>
       <button class="btn-end" onclick="openEnd()">END 🏁</button>
     </div>
   </header>
   <main>
-    <div class="search-wrap">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-      <input id="searchInput" type="text" placeholder="Search questions by keyword..." autocomplete="off" oninput="onSearch()">
+    <div class="search-bar-wrap">
+      <div class="search-wrap">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input id="searchInput" type="text" placeholder="Search questions by keyword... (use comma for multiple: VDI, backup)" autocomplete="off" oninput="onSearch()">
+      </div>
+      <div class="training-search-link">
+        <button onclick="openTraining(document.getElementById('searchInput').value.trim())">📚 search in training materials?</button>
+      </div>
     </div>
     <div class="stats-bar">
       <span id="resultCount" class="stat-chip"></span>
@@ -532,13 +540,25 @@ function getFiltered() {
   return currentCategory === 'all' ? QUESTIONS : QUESTIONS.filter(q => q.category === currentCategory);
 }
 
-function escape(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function escape(s) { return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
-function highlight(text, term) {
+function parseTerms(input) {
+  if (!input || !input.trim()) return [];
+  const parts = input.split(',').map(s => s.trim().toLowerCase()).filter(Boolean);
+  return parts;
+}
+
+function highlight(text, terms) {
   const escaped = escape(text);
-  if (!term.trim()) return escaped;
-  const re = new RegExp('(' + term.replace(/[.*+?^${}()|[\]\\]/g,'\\$&') + ')', 'gi');
-  return escaped.replace(re, '<mark>$1</mark>');
+  const arr = Array.isArray(terms) ? terms : (terms ? [terms] : []);
+  if (!arr.length) return escaped;
+  let result = escaped;
+  arr.forEach(term => {
+    if (!term.trim()) return;
+    const re = new RegExp('(' + term.replace(/[.*+?^${}()|[\]\\]/g,'\\$&') + ')', 'gi');
+    result = result.replace(re, '<mark>$1</mark>');
+  });
+  return result;
 }
 
 function renderAnswer(answer, term) {
@@ -554,44 +574,45 @@ function renderAnswer(answer, term) {
 }
 
 window.onSearch = function() {
-  const term = document.getElementById('searchInput').value.trim().toLowerCase();
+  const raw = document.getElementById('searchInput').value.trim();
+  const terms = parseTerms(raw);
   let pool = getFiltered();
-  if (term) pool = pool.filter(q => q.question.toLowerCase().includes(term) || q.answer.toLowerCase().includes(term));
-  const g = pool.filter(q => q.category==='General').length;
-  const s = pool.filter(q => q.category==='Security').length;
-  const h = pool.filter(q => q.category==='HCSM').length;
+  if (terms.length) pool = pool.filter(q =>
+    terms.every(t => q.question.toLowerCase().includes(t) || q.answer.toLowerCase().includes(t))
+  );
   document.getElementById('resultCount').textContent = pool.length + ' question' + (pool.length!==1?'s':'');
-  document.getElementById('countG').textContent = g;
-  document.getElementById('countS').textContent = s;
-  document.getElementById('countH').textContent = h;
+  document.getElementById('countG').textContent = pool.filter(q=>q.category==='General').length;
+  document.getElementById('countS').textContent = pool.filter(q=>q.category==='Security').length;
+  document.getElementById('countH').textContent = pool.filter(q=>q.category==='HCSM').length;
   const resultsEl = document.getElementById('results');
-  if (!pool.length) { resultsEl.innerHTML = `<div class="empty-state">No questions found for "<strong>${escape(term)}</strong>"<br><button class="btn-fallback" onclick="openTraining('${escape(term).replace(/'/g,"\\'")}')">📚 Search Training Materials instead</button></div>`; return; }
-  const display = term ? pool : pool.slice(0, 50);
+  if (!pool.length) { resultsEl.innerHTML = `<div class="empty-state">No questions found for "<strong>${escape(raw)}</strong>"<br><button class="btn-fallback" onclick="openTraining('${escape(raw).replace(/'/g,"\\'")}')">📚 Search Training Materials instead</button></div>`; return; }
+  const display = terms.length ? pool : pool.slice(0, 50);
   resultsEl.innerHTML = display.map(q => `
     <div class="card">
       <div class="card-header">
         <span class="badge badge-${q.category}">${q.category}</span>
-        <span class="question-text">${highlight(q.question, term)}</span>
+        <span class="question-text">${highlight(q.question, terms)}</span>
       </div>
       <div class="answer-wrap">
         <div class="answer-label">Answer</div>
-        ${renderAnswer(q.answer, term)}
+        ${renderAnswer(q.answer, terms)}
       </div>
     </div>`).join('');
-  if (!term && pool.length > 50) resultsEl.innerHTML += `<div class="more-hint">Showing 50 of ${pool.length}. Type to search.</div>`;
+  if (!terms.length && pool.length > 50) resultsEl.innerHTML += `<div class="more-hint">Showing 50 of ${pool.length}. Type to search.</div>`;
 };
 
-window.openTrainingContext = function(id, term) {
+window.openTrainingContext = function(id, termStr) {
   const chunk = (typeof TRAINING !== 'undefined' ? TRAINING : []).find(t => t.id === id);
   if (!chunk) return;
+  const terms = parseTerms(termStr);
   const breadcrumb = [chunk.source, chunk.topic, chunk.section].filter(Boolean).join(' › ');
   document.getElementById('contextBreadcrumb').textContent = breadcrumb;
   document.getElementById('contextContent').innerHTML = chunk.paragraphs.map(p => {
-    const isMatch = term && p.toLowerCase().includes(term);
+    const isMatch = terms.some(t => p.toLowerCase().includes(t));
     const style = isMatch
       ? 'margin-bottom:10px;padding:8px 12px;border-radius:6px;background:rgba(251,191,36,.08);border-left:3px solid var(--highlight)'
       : 'margin-bottom:10px;padding:0 12px;color:var(--text-muted)';
-    return `<p style="${style}">${highlight(escape(p), term)}</p>`;
+    return `<p style="${style}">${highlight(p, terms)}</p>`;
   }).join('');
   document.getElementById('trainingContextModal').classList.add('show');
   setTimeout(() => {
@@ -605,35 +626,37 @@ window.closeTrainingContext = function() {
 };
 
 // ── TRAINING FALLBACK ─────────────────────────────
-window.openTraining = function(term) {
+window.openTraining = function(raw) {
   document.getElementById('trainingModal').classList.add('show');
   const input = document.getElementById('trainingSearch');
-  input.value = term || '';
-  if (term) onTrainingSearch();
-  else input.focus();
+  input.value = raw || '';
+  if (raw && raw.trim()) onTrainingSearch();
+  else { document.getElementById('trainingResults').innerHTML = '<div style="color:var(--text-muted);text-align:center;padding:30px;font-size:14px">Type a keyword above 👆</div>'; input.focus(); }
 };
 
 window.onTrainingSearch = function() {
-  const term = document.getElementById('trainingSearch').value.trim().toLowerCase();
+  const raw = document.getElementById('trainingSearch').value.trim();
+  const terms = parseTerms(raw);
   const el = document.getElementById('trainingResults');
-  if (term.length < 2) { el.innerHTML = '<div style="color:var(--text-muted);text-align:center;padding:30px;font-size:14px">Type a keyword above 👆</div>'; return; }
+  if (!terms.length) { el.innerHTML = '<div style="color:var(--text-muted);text-align:center;padding:30px;font-size:14px">Type a keyword above 👆</div>'; return; }
   const pool = (typeof TRAINING !== 'undefined' ? TRAINING : []);
   const results = [];
   pool.forEach(t => {
-    const inTopic = t.topic.toLowerCase().includes(term) || t.section.toLowerCase().includes(term);
-    const matchParas = t.paragraphs.filter(p => p.toLowerCase().includes(term));
-    if (inTopic || matchParas.length) results.push({ t, matchParas: matchParas.length ? matchParas : [t.paragraphs[0]] });
+    const inHeader = terms.some(term => t.topic.toLowerCase().includes(term) || t.section.toLowerCase().includes(term));
+    const matchParas = t.paragraphs.filter(p => terms.every(term => p.toLowerCase().includes(term)));
+    if (inHeader || matchParas.length) results.push({ t, matchParas: matchParas.length ? matchParas : [t.paragraphs[0]] });
   });
   if (!results.length) { el.innerHTML = `<div style="color:var(--text-muted);text-align:center;padding:30px;font-size:14px">Nothing found in training materials either 😅<br><small>Try a different keyword</small></div>`; return; }
+  const termStr = raw.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
   el.innerHTML = results.slice(0, 25).map(({ t, matchParas }) => {
     const breadcrumb = [t.source, t.topic, t.section].filter(Boolean).join(' › ');
     const preview = matchParas[0].length > 260 ? matchParas[0].slice(0, 260) + '…' : matchParas[0];
     const extra = matchParas.length > 1
       ? `<div style="font-size:11px;color:var(--text-muted);margin-top:6px">${matchParas.length} matches — click to see all</div>`
       : `<div style="font-size:11px;color:var(--accent);margin-top:6px">Click to see full section →</div>`;
-    return `<div class="training-result" style="cursor:pointer" onclick="openTrainingContext(${t.id}, '${term.replace(/\\/g,'\\\\').replace(/'/g,"\\'")}')">
+    return `<div class="training-result" style="cursor:pointer" onclick="openTrainingContext(${t.id}, '${termStr}')">
       <div class="training-breadcrumb">📄 ${escape(breadcrumb)}</div>
-      <div class="training-content">${highlight(escape(preview), term)}</div>
+      <div class="training-content">${highlight(preview, terms)}</div>
       ${extra}
     </div>`;
   }).join('');
