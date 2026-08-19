@@ -101,7 +101,7 @@
   .btn-end { padding: 7px 18px; background: var(--security-bg); color: var(--security); border: 1px solid var(--security); border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all .15s; white-space: nowrap; }
   .btn-end:hover { background: var(--security); color: #fff; }
   main { max-width: 860px; margin: 0 auto; padding: 24px 16px; }
-  .search-wrap { position: relative; margin-bottom: 16px; }
+  .search-wrap { position: sticky; top: 57px; z-index: 90; background: var(--bg); padding: 8px 0; margin-bottom: 8px; }
   .search-wrap svg { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); opacity: .45; pointer-events: none; }
   #searchInput { width: 100%; padding: 13px 16px 13px 44px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; color: var(--text); font-size: 15px; outline: none; transition: border-color .15s; }
   #searchInput:focus { border-color: var(--accent); }
@@ -125,6 +125,13 @@
   mark { background: rgba(251,191,36,.25); color: var(--highlight); border-radius: 2px; padding: 0 1px; }
   .empty-state { text-align: center; padding: 60px 20px; color: var(--text-muted); }
   .more-hint { text-align: center; padding: 12px 0; color: var(--text-muted); font-size: 13px; }
+  /* TRAINING */
+  .training-modal-box { max-width: 680px; }
+  .training-result { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; margin-bottom: 10px; }
+  .training-breadcrumb { font-size: 11px; color: var(--accent); margin-bottom: 6px; font-weight: 500; }
+  .training-content { font-size: 13px; line-height: 1.65; color: var(--text); }
+  .btn-fallback { margin-top: 16px; padding: 11px 22px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; color: var(--accent); cursor: pointer; font-size: 14px; transition: all .15s; }
+  .btn-fallback:hover { border-color: var(--accent); background: rgba(79,142,247,.08); }
   ::-webkit-scrollbar { width: 6px; }
   ::-webkit-scrollbar-track { background: transparent; }
   ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
@@ -208,6 +215,25 @@
       <div id="feedbackFileName" style="font-size:13px;color:var(--hcsm);min-height:16px;margin-bottom:8px"></div>
       <button class="btn-submit" id="btnFeedback" onclick="submitFeedback()">Send Feedback 🚀</button>
       <div id="feedbackStatus" style="font-size:13px;text-align:center;margin-top:8px;min-height:16px"></div>
+    </div>
+  </div>
+</div>
+
+<!-- TRAINING MODAL -->
+<div class="modal-overlay" id="trainingModal">
+  <div class="modal-box training-modal-box">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px">
+      <div style="font-size:18px;font-weight:700">📚 Training Materials</div>
+      <span style="font-size:12px;color:var(--text-muted)">General only</span>
+      <button onclick="document.getElementById('trainingModal').classList.remove('show')" style="margin-left:auto;background:transparent;border:none;color:var(--text-muted);font-size:20px;cursor:pointer;line-height:1">✕</button>
+    </div>
+    <div style="position:relative;margin-bottom:16px">
+      <svg style="position:absolute;left:14px;top:50%;transform:translateY(-50%);opacity:.45;pointer-events:none" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input id="trainingSearch" type="text" placeholder="Search training materials..." autocomplete="off" oninput="onTrainingSearch()"
+        style="width:100%;padding:11px 16px 11px 42px;background:var(--bg);border:1px solid var(--border);border-radius:10px;color:var(--text);font-size:14px;outline:none">
+    </div>
+    <div id="trainingResults" style="max-height:55vh;overflow-y:auto">
+      <div style="color:var(--text-muted);text-align:center;padding:30px;font-size:14px">Type a keyword above 👆</div>
     </div>
   </div>
 </div>
@@ -524,7 +550,7 @@ window.onSearch = function() {
   document.getElementById('countS').textContent = s;
   document.getElementById('countH').textContent = h;
   const resultsEl = document.getElementById('results');
-  if (!pool.length) { resultsEl.innerHTML = `<div class="empty-state">No questions found for "<strong>${escape(term)}</strong>"</div>`; return; }
+  if (!pool.length) { resultsEl.innerHTML = `<div class="empty-state">No questions found for "<strong>${escape(term)}</strong>"<br><button class="btn-fallback" onclick="openTraining('${escape(term).replace(/'/g,"\\'")}')">📚 Search Training Materials instead</button></div>`; return; }
   const display = term ? pool : pool.slice(0, 50);
   resultsEl.innerHTML = display.map(q => `
     <div class="card">
@@ -540,6 +566,35 @@ window.onSearch = function() {
   if (!term && pool.length > 50) resultsEl.innerHTML += `<div class="more-hint">Showing 50 of ${pool.length}. Type to search.</div>`;
 };
 
+// ── TRAINING FALLBACK ─────────────────────────────
+window.openTraining = function(term) {
+  document.getElementById('trainingModal').classList.add('show');
+  const input = document.getElementById('trainingSearch');
+  input.value = term || '';
+  if (term) onTrainingSearch();
+  else input.focus();
+};
+
+window.onTrainingSearch = function() {
+  const term = document.getElementById('trainingSearch').value.trim().toLowerCase();
+  const el = document.getElementById('trainingResults');
+  if (term.length < 2) { el.innerHTML = '<div style="color:var(--text-muted);text-align:center;padding:30px;font-size:14px">Type a keyword above 👆</div>'; return; }
+  const results = (typeof TRAINING !== 'undefined' ? TRAINING : []).filter(t =>
+    t.topic.toLowerCase().includes(term) ||
+    t.section.toLowerCase().includes(term) ||
+    t.content.toLowerCase().includes(term)
+  ).slice(0, 25);
+  if (!results.length) { el.innerHTML = `<div style="color:var(--text-muted);text-align:center;padding:30px;font-size:14px">Nothing found in training materials either 😅<br><small>Try a different keyword</small></div>`; return; }
+  el.innerHTML = results.map(t => {
+    const snippet = t.content.length > 350 ? t.content.slice(0, 350) + '…' : t.content;
+    const breadcrumb = [t.source, t.topic, t.section].filter(Boolean).join(' › ');
+    return `<div class="training-result">
+      <div class="training-breadcrumb">📄 ${escape(breadcrumb)}</div>
+      <div class="training-content">${highlight(snippet, term)}</div>
+    </div>`;
+  }).join('');
+};
+
 function initSearch() {
   const g = QUESTIONS.filter(q => q.category==='General').length;
   const s = QUESTIONS.filter(q => q.category==='Security').length;
@@ -552,5 +607,6 @@ function initSearch() {
 }
 </script>
 <script src="questions.js"></script>
+<script src="training.js"></script>
 </body>
 </html>
