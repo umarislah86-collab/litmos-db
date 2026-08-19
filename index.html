@@ -501,7 +501,13 @@ function highlight(text, term) {
 }
 
 function renderAnswer(answer, term) {
-  const parts = answer.split(' | ').map(s => s.trim()).filter(Boolean);
+  let parts = answer.split(' | ').map(s => s.trim()).filter(Boolean);
+  if (parts.length <= 1) {
+    const sentences = answer.split(/\.\s+/).map(s => s.trim()).filter(s => s.length > 15);
+    if (sentences.length >= 2) {
+      parts = sentences.map((s, i) => i < sentences.length - 1 ? s + '.' : s);
+    }
+  }
   if (parts.length <= 1) return `<div class="answer-text">${highlight(answer, term)}</div>`;
   return `<div class="answer-items">${parts.map(p => `<div class="answer-item">${highlight(p, term)}</div>`).join('')}</div>`;
 }
