@@ -19,12 +19,13 @@ def extract_docx(filepath):
     cur_lines = []
 
     def save_chunk():
-        content = ' '.join(l for l in cur_lines if l)
-        if content and len(content) > 20:
+        paras = [l for l in cur_lines if l]
+        if paras and len(' '.join(paras)) > 20:
             chunks.append({
                 'topic': cur_h1,
                 'section': cur_h2,
-                'content': content,
+                'paragraphs': paras,
+                'content': ' '.join(paras),
                 'source': source_label
             })
 

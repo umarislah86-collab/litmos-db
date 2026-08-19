@@ -100,6 +100,8 @@
   .cat-btn.active-HCSM { border-color: var(--hcsm); color: var(--hcsm); background: var(--hcsm-bg); }
   .btn-end { padding: 7px 18px; background: var(--security-bg); color: var(--security); border: 1px solid var(--security); border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all .15s; white-space: nowrap; }
   .btn-end:hover { background: var(--security); color: #fff; }
+  .btn-training { padding: 7px 16px; background: rgba(79,142,247,.1); color: var(--accent); border: 1px solid rgba(79,142,247,.3); border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all .15s; white-space: nowrap; }
+  .btn-training:hover { background: rgba(79,142,247,.2); border-color: var(--accent); }
   main { max-width: 860px; margin: 0 auto; padding: 24px 16px; }
   .search-wrap { position: sticky; top: 57px; z-index: 90; background: var(--bg); padding: 8px 0; margin-bottom: 8px; }
   .search-wrap svg { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); opacity: .45; pointer-events: none; }
@@ -238,6 +240,18 @@
   </div>
 </div>
 
+<!-- TRAINING CONTEXT MODAL -->
+<div class="modal-overlay" id="trainingContextModal">
+  <div class="modal-box" style="max-width:700px">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+      <button onclick="closeTrainingContext()" style="background:transparent;border:none;color:var(--accent);cursor:pointer;font-size:14px;font-weight:600;padding:0">← Back</button>
+      <div id="contextBreadcrumb" style="font-size:12px;color:var(--text-muted);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap"></div>
+      <button onclick="document.getElementById('trainingContextModal').classList.remove('show')" style="background:transparent;border:none;color:var(--text-muted);font-size:20px;cursor:pointer;flex-shrink:0">✕</button>
+    </div>
+    <div id="contextContent" style="max-height:65vh;overflow-y:auto;font-size:14px;line-height:1.75"></div>
+  </div>
+</div>
+
 <!-- MAIN APP -->
 <div id="mainView">
   <header>
@@ -250,6 +264,7 @@
         <button class="cat-btn" id="catSecurity" onclick="setCategory('Security')">Security</button>
         <button class="cat-btn" id="catHCSM" onclick="setCategory('HCSM')">HCSM</button>
       </div>
+      <button class="btn-training" onclick="openTraining('')">📚 Training</button>
       <button class="btn-end" onclick="openEnd()">END 🏁</button>
     </div>
   </header>
@@ -566,6 +581,29 @@ window.onSearch = function() {
   if (!term && pool.length > 50) resultsEl.innerHTML += `<div class="more-hint">Showing 50 of ${pool.length}. Type to search.</div>`;
 };
 
+window.openTrainingContext = function(id, term) {
+  const chunk = (typeof TRAINING !== 'undefined' ? TRAINING : []).find(t => t.id === id);
+  if (!chunk) return;
+  const breadcrumb = [chunk.source, chunk.topic, chunk.section].filter(Boolean).join(' › ');
+  document.getElementById('contextBreadcrumb').textContent = breadcrumb;
+  document.getElementById('contextContent').innerHTML = chunk.paragraphs.map(p => {
+    const isMatch = term && p.toLowerCase().includes(term);
+    const style = isMatch
+      ? 'margin-bottom:10px;padding:8px 12px;border-radius:6px;background:rgba(251,191,36,.08);border-left:3px solid var(--highlight)'
+      : 'margin-bottom:10px;padding:0 12px;color:var(--text-muted)';
+    return `<p style="${style}">${highlight(escape(p), term)}</p>`;
+  }).join('');
+  document.getElementById('trainingContextModal').classList.add('show');
+  setTimeout(() => {
+    const first = document.querySelector('#contextContent [style*="border-left"]');
+    if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }, 120);
+};
+
+window.closeTrainingContext = function() {
+  document.getElementById('trainingContextModal').classList.remove('show');
+};
+
 // ── TRAINING FALLBACK ─────────────────────────────
 window.openTraining = function(term) {
   document.getElementById('trainingModal').classList.add('show');
@@ -579,18 +617,24 @@ window.onTrainingSearch = function() {
   const term = document.getElementById('trainingSearch').value.trim().toLowerCase();
   const el = document.getElementById('trainingResults');
   if (term.length < 2) { el.innerHTML = '<div style="color:var(--text-muted);text-align:center;padding:30px;font-size:14px">Type a keyword above 👆</div>'; return; }
-  const results = (typeof TRAINING !== 'undefined' ? TRAINING : []).filter(t =>
-    t.topic.toLowerCase().includes(term) ||
-    t.section.toLowerCase().includes(term) ||
-    t.content.toLowerCase().includes(term)
-  ).slice(0, 25);
+  const pool = (typeof TRAINING !== 'undefined' ? TRAINING : []);
+  const results = [];
+  pool.forEach(t => {
+    const inTopic = t.topic.toLowerCase().includes(term) || t.section.toLowerCase().includes(term);
+    const matchParas = t.paragraphs.filter(p => p.toLowerCase().includes(term));
+    if (inTopic || matchParas.length) results.push({ t, matchParas: matchParas.length ? matchParas : [t.paragraphs[0]] });
+  });
   if (!results.length) { el.innerHTML = `<div style="color:var(--text-muted);text-align:center;padding:30px;font-size:14px">Nothing found in training materials either 😅<br><small>Try a different keyword</small></div>`; return; }
-  el.innerHTML = results.map(t => {
-    const snippet = t.content.length > 350 ? t.content.slice(0, 350) + '…' : t.content;
+  el.innerHTML = results.slice(0, 25).map(({ t, matchParas }) => {
     const breadcrumb = [t.source, t.topic, t.section].filter(Boolean).join(' › ');
-    return `<div class="training-result">
+    const preview = matchParas[0].length > 260 ? matchParas[0].slice(0, 260) + '…' : matchParas[0];
+    const extra = matchParas.length > 1
+      ? `<div style="font-size:11px;color:var(--text-muted);margin-top:6px">${matchParas.length} matches — click to see all</div>`
+      : `<div style="font-size:11px;color:var(--accent);margin-top:6px">Click to see full section →</div>`;
+    return `<div class="training-result" style="cursor:pointer" onclick="openTrainingContext(${t.id}, '${term.replace(/\\/g,'\\\\').replace(/'/g,"\\'")}')">
       <div class="training-breadcrumb">📄 ${escape(breadcrumb)}</div>
-      <div class="training-content">${highlight(snippet, term)}</div>
+      <div class="training-content">${highlight(escape(preview), term)}</div>
+      ${extra}
     </div>`;
   }).join('');
 };
