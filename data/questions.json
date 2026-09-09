@@ -3654,1197 +3654,1389 @@
     "id": 609
   },
   {
+    "question": "Christopher would like to use a single collaboration platform for meetings, ﬁle sharing, calling and chatting with his team mates. What is the service he should be directed to as the central cloud collaboration platform at SAP?",
+    "answer": "Microsoft Teams | courseid=34821298&moduleid=41324607&questionid=8885893&retry=True&review=True&LPId=0)",
+    "category": "General",
+    "id": 610
+  },
+  {
+    "question": "Which of the following statements is correct about restoring deleted ﬁles or folders in Teams/SharePoint?",
+    "answer": "Site owners can restore ﬁles fr om any point in time during the last 30 days | Use Shared tab → Open in SharePoint → Recycle Bin → Restore | courseid=34821298&moduleid=41324607&questionid=8885905&retry=True&review=True&LPId=0)",
+    "category": "General",
+    "id": 611
+  },
+  {
+    "question": "Is it possible to increase the quota of shared mailbox?",
+    "answer": "Yes, the maximum size can be increased to 100GB | courseid=34821298&moduleid=41324607&questionid=8885930&retry=True&review=True&LPId=0)",
+    "category": "General",
+    "id": 612
+  },
+  {
+    "question": "How long do temporary mass mailing permissions last?",
+    "answer": "30 days | courseid=34821298&moduleid=41324607&questionid=8885932&retry=True&review=True&LPId=0)",
+    "category": "General",
+    "id": 613
+  },
+  {
+    "question": "Which statements are true regarding shared mailbox?",
+    "answer": "The mailbox needs a minimum of two \"active\" owners, and the primary owner must be an active I or D | user. | courseid=34821298&moduleid=41324607&questionid=8885936&retry=True&review=True&LPId=0)",
+    "category": "General",
+    "id": 614
+  },
+  {
+    "question": "Mary wants to add an external customer to a meeting in a MTR room, she trys to request the user to join from the MTR but she cannot locate the customer, what is the reason?",
+    "answer": "if Mary had invited the external customer in the meeting request they could easily join the meeting | even if only in a web Browser | the external customer is not in SAP active directory and cannot be added in this way | courseid=34821298&moduleid=41324607&questionid=8885945&retry=True&review=True&LPId=0)",
+    "category": "General",
+    "id": 615
+  },
+  {
+    "question": "Why is downloading the meeting attendance list disabled at SAP?",
+    "answer": "This feature is disabled intentionally at SAP as it is pending approval from the German Worker's | Council | courseid=34821298&moduleid=41324607&questionid=8885951&retry=True&review=True&LPId=0)",
+    "category": "General",
+    "id": 616
+  },
+  {
+    "question": "How long is a newly generated hardware return PIN code valid?",
+    "answer": "180 minutes. | courseid=34774649&moduleid=41324593&questionid=8885549&retry=True&review=True&LPId=0)",
+    "category": "General",
+    "id": 617
+  },
+  {
+    "question": "Are Apple AirPods covered by SAP’s Apple Care for Enterprise (ACE) programme?",
+    "answer": "No, they are not covered | courseid=34774649&moduleid=41324593&questionid=8885563&retry=True&review=True&LPId=0)",
+    "category": "General",
+    "id": 618
+  },
+  {
+    "question": "What does the ABC Indicator “U” represent in EMR (Equipment Master Record)?",
+    "answer": "User/Productive | courseid=34774649&moduleid=41324593&questionid=8885565&retry=True&review=True&LPId=0)",
+    "category": "General",
+    "id": 619
+  },
+  {
+    "question": "What kinds of information need to be maintained when the equipment ABC indicator is U (User/Productive)?",
+    "answer": "User ID | User's Cost center | courseid=34774649&moduleid=41324593&questionid=8885566&retry=True&review=True&LPId=0)",
+    "category": "General",
+    "id": 620
+  },
+  {
+    "question": "Which HRC status devices require secure storage?",
+    "answer": "Amber | Red | courseid=34774649&moduleid=41324593&questionid=8885591&retry=True&review=True&LPId=0)",
+    "category": "General",
+    "id": 621
+  },
+  {
+    "question": "Which of the following devices can be connected to \"SAP\" network?",
+    "answer": "SAP imaged laptop | SAP managed mobile device | courseid=34821300&moduleid=41324612&questionid=8885990&retry=True&review=True&LPId=0)",
+    "category": "General",
+    "id": 622
+  },
+  {
+    "question": "Kannan reports that he is not able to connect VPN with F5 BIG-IP Edge Client. He mentions that he is able to connect VPN with F5 BIG-IP Edge Client while Global Protect is disabled. What should you check to rectify this?",
+    "answer": "Tell Kannan that only one VPN solution can be used. Using both at the same time is not possible | anymore. | courseid=34821300&moduleid=41324612&questionid=8885992&retry=True&review=True&LPId=0)",
+    "category": "General",
+    "id": 623
+  },
+  {
+    "question": "Which of the following address is correct for GlobalProtect Portal address?",
+    "answer": "sap.gpcloudservice.com | courseid=34821300&moduleid=41324612&questionid=8885994&retry=True&review=True&LPId=0)",
+    "category": "General",
+    "id": 624
+  },
+  {
+    "question": "What is the full form of ONT?",
+    "answer": "Oﬃce Network Technologies | courseid=34821300&moduleid=41324612&questionid=8885995&retry=True&review=True&LPId=0)",
+    "category": "General",
+    "id": 625
+  },
+  {
+    "question": "If the BIG-IP Edge Client fails to connect, what is the ﬁrst step to check?",
+    "answer": "Check internet connectivity and VPN server details | courseid=34821300&moduleid=41324612&questionid=8886002&retry=True&review=True&LPId=0)",
+    "category": "General",
+    "id": 626
+  },
+  {
+    "question": "What is the full form of NIP?",
+    "answer": "Network Information Portal | courseid=34821300&moduleid=41324612&questionid=8886007&retry=True&review=True&LPId=0)",
+    "category": "General",
+    "id": 627
+  },
+  {
+    "question": "If an external user will be working in SAP for six months and requires access to the SAP GUEST network at SMON migrated oﬃce, which guest type should we suggest him to request on the SAP Guest Portal?",
+    "answer": "SAP_Contractor | courseid=34821300&moduleid=41324612&questionid=8886010&retry=True&review=True&LPId=0)",
+    "category": "General",
+    "id": 628
+  },
+  {
+    "question": "The user cannot log in to GlobalProtect due to an authentication issue. The error message \"Oops - You can't get to this yet\" appears. What might be causing this problem?",
+    "answer": "Device compliance issue | courseid=34821300&moduleid=41324612&questionid=8886023&retry=True&review=True&LPId=0)",
+    "category": "General",
+    "id": 629
+  },
+  {
+    "question": "Where can you check SMON Machine certiﬁcate in Windows devices?",
+    "answer": "Certlm.msc - Personal - Certiﬁcate | courseid=34821300&moduleid=41324612&questionid=8886027&retry=True&review=True&LPId=0) | Complete",
+    "category": "General",
+    "id": 630
+  },
+  {
+    "question": "The ﬁrst step to start the meeting room support process is to scan the meeting room experience QR code. Where can you ﬁnd the QR code?",
+    "answer": "Close to the technology installed on the table (For small meeting rooms) | Close to the technology installed on the table and on the table opposite diagonally (For large meeting | rooms) | courseid=34821299&moduleid=41324609&questionid=8885957&retry=True&review=True&LPId=0)",
+    "category": "General",
+    "id": 631
+  },
+  {
+    "question": "How long is the default maximum booking lead time for meeting room (non all day meetings)?",
+    "answer": "180 days | courseid=34821299&moduleid=41324609&questionid=8885958&retry=True&review=True&LPId=0)",
+    "category": "General",
+    "id": 632
+  },
+  {
+    "question": "You are informed a Meeting Room will be renovated and it will take 48hrs to complete, what kind of actions should you take?",
+    "answer": "Communicate with users who have the room booked and ensure all bookings are cancelled. Then | book the room for the duration of the works to avoid end users booking it. | Contact GRF to turn oﬀ booking the meeting r ooms | Go on MRC and disable \"events creation\" | courseid=34821299&moduleid=41324609&questionid=8885964&retry=True&review=True&LPId=0)",
+    "category": "General",
+    "id": 633
+  },
+  {
+    "question": "How can users install an SAP Printer via SAP-GUEST WiFi or home internet?",
+    "answer": "Connect SAP network with VPN and then use SAP Printing UI5 to install SAP Printers | courseid=34821299&moduleid=41324609&questionid=8885967&retry=True&review=True&LPId=0)",
+    "category": "General",
+    "id": 634
+  },
+  {
     "question": " 2  00:00:02:21 100% - Passed Correct Weight: 1 Jack resigned and left SAP 10 days ago. Is it possible for his manager to access Jack's PC?",
     "answer": "If Jack was a D/I-user, get approval from HR and DPPO oﬃce and contact IT to help access this PC with Raccount. | If Jack is a C-user, get approval from the cost center manager and then contact IT to help access this PC with Raccount.",
     "category": "Security",
-    "id": 610
+    "id": 635
   },
   {
     "question": "Correct Weight: 1 When the End User's account status shows \"No\" in the Unlocked ﬁeld in ITSD Support T ool, how should you proceed?",
     "answer": "Unlock via ITSD Support Tool after the end user is veriﬁed.",
     "category": "Security",
-    "id": 611
+    "id": 636
   },
   {
     "question": "Correct Weight: 1 What is the correct action to be taken when an account status shows \"disable\" in ITSD Support Tool?",
     "answer": "Do not provide IT technical support to this end user. | If the impacted user is a C-user, suggest him/her to check with the EWFC (External WorkForce Center) and his/her manager (do not provide the manager's name). | If the impacted user is a D/I user, suggest him/her to contact HR directly or his/her manager (do not provide manager's name).",
     "category": "Security",
-    "id": 612
+    "id": 637
   },
   {
     "question": "Correct Weight: 1 What should a Remote Agent do when an end user with an Intune-enrolled device requests to reset domain password?",
     "answer": "Validate end user and reset the password. Provide the password to end user and ask him/her to log in to WTS to set up a new password. Then ask end user to log into the device by",
     "category": "Security",
-    "id": 613
+    "id": 638
   },
   {
     "question": "Correct Weight: 1 How can a company smartphone be made more secure?",
     "answer": "Don't leave the device in public areas and don't transfer any information over connections.",
     "category": "Security",
-    "id": 614
+    "id": 639
   },
   {
     "question": "Correct Weight: 1 In which of the following scenarios is user veriﬁcation not mandatory?",
     "answer": "MFA Reset for External user accounts by themselves",
     "category": "Security",
-    "id": 615
+    "id": 640
   },
   {
     "question": "Correct Weight: 1 How does a technician provide an End User with a temporary password after a successful validation?",
     "answer": "SMS to a valid Mobile Phone number maintained in SAP People or NEPRA | Hotline Call | Direct Message in SAP Teams Chat(1:1)",
     "category": "Security",
-    "id": 616
+    "id": 641
   },
   {
     "question": "Correct Weight: 1 What prerequisite must be completed before an end user can use Self-Service Password Reset (SSPR) to unlock their account or reset their password?",
     "answer": "The end user must install and conﬁgur e MFA on a mobile device and set at least two authentication methods.",
     "category": "Security",
-    "id": 617
+    "id": 642
   },
   {
     "question": "Correct Weight: 1 Do we need to verify users if they request to enable RSA emergency mode?",
     "answer": "Yes, if there is no PIN set to the card",
     "category": "Security",
-    "id": 618
+    "id": 643
   },
   {
     "question": "Correct Weight: 1 If OSS agents contact the IT Service Desk via Teams or Call for an end user's password reset, do CSD agents need to verify the OSS agents?",
     "answer": "Yes",
     "category": "Security",
-    "id": 619
+    "id": 644
   },
   {
     "question": "Correct Weight: 1 Phishing is not limited to email. Select the other possible ways end users may receive phishing attempts.",
     "answer": "via SMS | via Teams | via any other messaging channel",
     "category": "Security",
-    "id": 620
+    "id": 645
   },
   {
     "question": "Correct Weight: 1 Which statement is correct if end users want to use a third-party software which is not listed in Software Hub?",
     "answer": "The end users should start the software approval process for that third-party software before his/her installation.",
     "category": "Security",
-    "id": 621
+    "id": 646
   },
   {
     "question": "Correct Weight: 1 One year after Jack left SAP, his manager found that the OneDrive ﬁles Jack shar ed were expired. Is it possible to restore these ﬁles?",
     "answer": "It is no longer possible to restore the ﬁles.",
     "category": "Security",
-    "id": 622
+    "id": 647
   },
   {
     "question": "Correct Weight: 1 How can you protect our business information?",
     "answer": "I use tools approved by SAP for sharing business information.",
     "category": "Security",
-    "id": 623
+    "id": 648
   },
   {
     "question": "Correct Weight: 1 Are we able to check the root cause of domain account lock via ITSD Support Tool?",
     "answer": "No",
     "category": "Security",
-    "id": 624
+    "id": 649
   },
   {
     "question": "Correct Weight: 1 When is it acceptable for an end user or an OSS agent to request a Raccount password?",
     "answer": "When the PC has lost connection to the domain and needs to be readded. | When the end user can't log into the PC and needs to run the commands to sync the password.",
     "category": "Security",
-    "id": 625
+    "id": 650
   },
   {
     "question": "Correct Weight: 1 Are End Users allowed to install software that is marked as prohibited in Software Hub?",
     "answer": "No",
     "category": "Security",
-    "id": 626
+    "id": 651
   },
   {
     "question": "Correct Weight: 1 What information is needed to verify an end user via RSA soft token in ITSD Support Tool?",
     "answer": "RSA Token Passcode",
     "category": "Security",
-    "id": 627
+    "id": 652
   },
   {
     "question": "Correct Weight: 1 How can an end user get a Bitlocker Key for an Intune Machine?",
     "answer": "Contact IT to get the Bitlocker recovery key | Go to https://myaccount.microsoft.com/device-list to get the Bitlocker recovery key",
     "category": "Security",
-    "id": 628
+    "id": 653
   },
   {
     "question": "Correct Weight: 1 Can CSD Agents reset an end user's domain password when a member of OSS team contacts CSD Agents to make the request on behalf of the user?",
     "answer": "Yes, as long as CSD validate the OSS colleague who contacts CSD.",
     "category": "Security",
-    "id": 629
+    "id": 654
   },
   {
     "question": "Correct Weight: 1 Which of the following distribution methods for sharing temporary password are correct?",
     "answer": "Share PW on the Hotline Call | Call user back on the mobile number maintained within SAP People or NEPRA | Share PW to the end user on Teams Chat(1v1) | Share PW to the local IT after successful veriﬁcation",
     "category": "Security",
-    "id": 630
+    "id": 655
   },
   {
     "question": "Correct Weight: 1 Are we able to check the root cause of domain account lock via Splunk Tool (https://sapwdfsh01.wdf.global.corp.sap/en- US/app/sap_itsd_monitoring/sap_for_itsd_user_failed_logonlockout_details_clone)?",
     "answer": "Yes",
     "category": "Security",
-    "id": 631
+    "id": 656
   },
   {
     "question": "Correct Weight: 1 Please select the correct statement about social engineering attacks.",
     "answer": "Social engineering attacks target not just businesses but also private individuals.",
     "category": "Security",
-    "id": 632
+    "id": 657
   },
   {
     "question": "Correct Weight: 1 Which of the following methods should not be used to distribute temporary passwords?",
     "answer": "Email | HCSM Ticket | Teams Group Chat",
     "category": "Security",
-    "id": 633
+    "id": 658
   },
   {
     "question": "Correct Weight: 1 Do we need to validate an end user who contacts the IT Service Desk for a password reset/account unlock?",
     "answer": "Yes",
     "category": "Security",
-    "id": 634
+    "id": 659
   },
   {
     "question": "Correct Weight: 1 Is it possible for an end user with an Intune-enrolled device to retrieve BitLocker Key on his or her own?",
     "answer": "Yes",
     "category": "Security",
-    "id": 635
+    "id": 660
   },
   {
     "question": "Correct Weight: 1 When an end user receives a suspicious phishing email, what's the correct action?",
     "answer": "Don't click any links or provide any information. | Check if the sender's email address is SAP's. | Suggest the user to report this mail by clicking on \"Report Phishing\" button in the outlook ribbon.",
     "category": "Security",
-    "id": 636
+    "id": 661
   },
   {
     "question": "Correct Weight: 1 Which of the following information are the exceptions that can be shared through encrypted email?",
     "answer": "FileVault Keys | Bitlocker Keys",
     "category": "Security",
-    "id": 637
+    "id": 662
   },
   {
     "question": "Correct Weight: 1 If an end user is unable to log into the Mac after a password reset by a technician or self-reset in WTS, what steps should the user follow for successful login?",
     "answer": "Inform the end user that an IT agent should get a FileVault Recovery Key on his/her behalf.",
     "category": "Security",
-    "id": 638
+    "id": 663
   },
   {
     "question": "Correct Weight: 1 Which statements below are correct for TAP code at SAP?",
     "answer": "A TAP code generated from NEPRA Tool expires after 30 minutes and can be regenerated. | A TAP code generated from Azure AD has a minimum expiration period of 10 minutes and a maximum period of 2 hours. (By default it's 30 minutes.) | A TAP code can be used multiple times within activation duration if it is set to \"No\" for \"one-time use\" in Azure AD.",
     "category": "Security",
-    "id": 639
+    "id": 664
   },
   {
     "question": "Correct Weight: 1 When the user Jack launches an SAP SharePoint site, it prompts to enter a Microsoft Authenticator code. The Microsoft Authenticator app on none of his mobile devices shows account information. How should you proceed as an IT support agent?",
     "answer": "We can verify Jack's identity and help to reset MFA | We can verify Jack's identity and then provide TAP to him to reconﬁgur e MFA",
     "category": "Security",
-    "id": 640
+    "id": 665
   },
   {
     "question": "Correct Weight: 1 Two days after Jack left SAP, his manager found that the OneDrive ﬁles Jack had shar ed were expired. Is it possible to restore these ﬁles?",
     "answer": "If Jack was a D/I-user, get approval from HR and DPPO oﬃce and then contact IT to restore the ﬁles. | If Jack was a C-user, get approval from the cost center manager and then contact IT to restore the ﬁles.",
     "category": "Security",
-    "id": 641
+    "id": 666
   },
   {
     "question": "Correct Weight: 1 In which of the following scenarios, is it mandatory to do user veriﬁcation?",
     "answer": "Domain Account Password Reset | Bitlocker Key Request by IT | Domain Account Unlock | FileVault Key Request",
     "category": "Security",
-    "id": 642
+    "id": 667
   },
   {
     "question": "Correct Weight: 1 What is the correct way to handle a new hire's request for TAP code to set up MFA?",
     "answer": "If there is phone number maintained in NEPRA tool for the new hires, click on \"TAP Info\" in NEPRA and the TAP code will be sent via SMS message to the phone number recorded in",
     "category": "Security",
-    "id": 643
+    "id": 668
   },
   {
     "question": "Correct Weight: 1 If an end user requests information about other end users, which of the following information can be shared?",
     "answer": "Explain to the end user that due to SAP Security and Data Protection policy, we are not allowed to provide any information about SAP employees'.",
     "category": "Security",
-    "id": 644
+    "id": 669
   },
   {
     "question": "Correct Weight: 1 When Jack launches a customer SharePoint site, it prompts to enter a Microsoft Authenticator code. The Authenticator app on his SAP-managed iPhone shows no account information. How should you proceed as an IT support agent?",
     "answer": "Suggest Jack to contact customer support desk for MFA reset.",
     "category": "Security",
-    "id": 645
+    "id": 670
   },
   {
     "question": "Correct Weight: 1 Do we need to verify a user who requests to stop RSA emergency mode?",
     "answer": "No",
     "category": "Security",
-    "id": 646
+    "id": 671
   },
   {
     "question": "Correct Weight: 1 Can SAP employees who use multi-factor authentication (MFA) still be targeted by phishing attacks?",
     "answer": "MFA can help to protect, but there is no fool proof solution.",
     "category": "Security",
-    "id": 647
+    "id": 672
   },
   {
     "question": "Correct Weight: 1 Is a direct message from a manager on Teams accepted as valid approval when verifying a user in RITM?",
     "answer": "No",
     "category": "Security",
-    "id": 648
+    "id": 673
   },
   {
     "question": "Correct Weight: 1 Select the correct ways to validate an end user who is an active SAP employee:",
     "answer": "SMS/Call back to mobile phone number maintained in SAP People or NEPRA | Manager's approval via RITM (IT tickets)",
     "category": "Security",
-    "id": 649
+    "id": 674
   },
   {
     "question": "Correct Weight: 1 If an end user has an issue with an Excel ﬁle that c ontains conﬁdential information, what action should y ou take if you need to take a screenshot to be included with a ticket escalation?",
     "answer": "Guide the user to take a screenshot and hide the sensitive information before attaching it to the ticket.",
     "category": "Security",
-    "id": 650
+    "id": 675
   },
   {
     "question": "Correct Weight: 1 What information must be checked if an end user requests a Rescue account password?",
     "answer": "Hostname | Whether the requestor is the Admin of the device | Valid Request Reason",
     "category": "Security",
-    "id": 651
+    "id": 676
   },
   {
     "question": "Correct Weight: 1 Where can CSD Agents ﬁnd out the r oot cause for end users' domain account lock?",
     "answer": "Splunk (https://sapwdfsh01.wdf.global.corp.sap/en-US/app/sap_itsd_monitoring/sap_for_itsd_user_failed_logonlockout_details_clone)",
     "category": "Security",
-    "id": 652
+    "id": 677
   },
   {
     "question": "Correct Weight: 1 When Jack launches an SAP shared tenant portal, he is prompted for a Microsoft Authenticator code. The Authenticator app on his SAP-managed iPhone shows no account information. How can we solve this issue?",
     "answer": "Guide Jack to contact the shared tenant support for MFA reset.",
     "category": "Security",
-    "id": 653
+    "id": 678
   },
   {
     "question": "Correct Weight: 1 If a manager has a designated delegate in ServiceNow, can the delegate approve requests for domain account unlock or password reset via RITM (IT tickets)?",
     "answer": "Yes",
     "category": "Security",
-    "id": 654
+    "id": 679
   },
   {
     "question": "Correct Weight: 1 How long is a temporary domain password valid for?",
     "answer": "2 hours",
     "category": "Security",
-    "id": 655
+    "id": 680
   },
   {
     "question": "Correct Weight: 1 When an end user calls IT Hotline, but doesn't know his/her SAP user ID, how should we support in such case?",
     "answer": "Guide the user to contact his/her manager or HR to get SAP user ID ﬁrst, then call IT Hotline again. | We can explain to the user that for security reason, \"No ID, no support\". And guide him/her to get the ID ﬁrst.",
     "category": "Security",
-    "id": 656
+    "id": 681
   },
   {
     "question": "Correct Weight: 1 If a technician ﬁnds that an end user has attached a scr eenshot of sensitive information (e.g. pay slip), what action should the technician take?",
     "answer": "Inform the end user that sensitive information should not be shared and advise him/her not to include such information into a ticket. | Create a ticket and escalate to the HCSM POST team to have the screenshot deleted.",
     "category": "Security",
-    "id": 657
+    "id": 682
   },
   {
     "question": "Correct Weight: 1 Is it allowed for an end user to request a rescue account for adding another administrator or reassigning a device?",
     "answer": "No",
     "category": "Security",
-    "id": 658
+    "id": 683
   },
   {
     "question": "Correct Weight: 1 What information is needed to verify an end user via RSA hard token in ITSD Support Tool?",
     "answer": "PIN code | RSA Token Passcode",
     "category": "Security",
-    "id": 659
+    "id": 684
   },
   {
     "question": "Is user veriﬁcation necessary when an end user self‐creates a ticket for password reset or account unlock?",
     "answer": "Yes | courseid=33782059&moduleid=40364631&questionid=8521167&retry=True&review=True&LPId=0)",
     "category": "Security",
-    "id": 660
+    "id": 685
   },
   {
     "question": "When Jack launches a customer SharePoint site, it prompts to enter a Microsoft Authenticator code.",
     "answer": "The Authenticator app on his SAP-managed iPhone shows no account information. How should you | proceed as an IT support agent? | Suggest Jack to contact customer support desk for MFA reset. | courseid=33782059&moduleid=40364631&questionid=8521178&retry=True&review=True&LPId=0)",
     "category": "Security",
-    "id": 661
+    "id": 686
   },
   {
     "question": "Which statement is correct if end users want to use a third-party software which is not listed in Software Hub?",
     "answer": "The end users should start the software approval process for that third-party software before the | installation. | courseid=33782059&moduleid=40364631&questionid=8521189&retry=True&review=True&LPId=0)",
     "category": "Security",
-    "id": 662
+    "id": 687
   },
   {
     "question": "WhenJacklaunchesanSAPSharePointsite,itpromptstoenteraMicrosoftAuthenticatorcode.The Microsoft Authenticator app on none of his mobile devices shows account information. How should you proceed as an IT support agent?",
     "answer": "We can verify Jack's identity and help to reset MFA | We can verify Jack's identity and then provide TAP to him to reconﬁgur e MFA | courseid=33782059&moduleid=40364631&questionid=8521177&retry=True&review=True&LPId=0)",
     "category": "Security",
-    "id": 663
+    "id": 688
   },
   {
     "question": "Correct Weight: 1 Which of these are common signs of a Phishing message?",
     "answer": "A sense of urgency | A link, attachment or QR code | A suspicious sender address",
     "category": "Security",
-    "id": 664
+    "id": 689
   },
   {
     "question": "Correct Weight: 1 In which of the following scenarios it is mandatory to do user veriﬁcation?",
     "answer": "Domain Account Password Reset | Bitlocker Key Request by IT | Domain Account Unlock | FileVault Key Request",
     "category": "Security",
-    "id": 665
+    "id": 690
   },
   {
     "question": "Correct Weight: 1 How can an end user reduce the risk of a security incident when using mobile devices?",
     "answer": "Don't scan QR codes/NFC tags if the source is untrusted. | Don't use public chargers.",
     "category": "Security",
-    "id": 666
+    "id": 691
   },
   {
     "question": "Correct Weight: 1 Is user veriﬁcation necessary when an end user self‐cr eates a ticket for password reset or account unlock?",
     "answer": "Yes",
     "category": "Security",
-    "id": 667
+    "id": 692
   },
   {
     "question": "Correct Weight: 1 If an end user is unable to log into the Mac after a password reset by a technician or self-reset in WTS, what steps should IT agents guide the user to follow for successful login?",
     "answer": "Inform the end user that an IT agent should get a FileVault Recovery Key on his/her behalf.",
     "category": "Security",
-    "id": 668
+    "id": 693
   },
   {
     "question": "Correct Weight: 1 Is User Veriﬁcation r equired when there is a request for TAP (Temporary Access Pass)?",
     "answer": "Yes, if generate by Azure AD",
     "category": "Security",
-    "id": 669
+    "id": 694
   },
   {
     "question": "Correct Weight: 1 Jack resigned and left SAP 10 days ago. Is it possible for his manager to access Jack's PC?",
     "answer": "If Jack was a D/I-user, get approval from HR and DPPO oﬃce and contact IT to help access this",
     "category": "Security",
-    "id": 670
+    "id": 695
   },
   {
     "question": "Correct Weight: 1 If an end user has an issue with an Excel ﬁle that c ontains conﬁdential information, what action should you take if you need to take a screenshot to be included with a ticket escalation?",
     "answer": "Guide the user to take a screenshot and hide the sensitive information before attaching it to the",
     "category": "Security",
-    "id": 671
+    "id": 696
   },
   {
     "question": "Correct Weight: 1 What is the possible reason that the user account in ITSD Support Tool shows \"N/A\" for Password Last Set ﬁeld?",
     "answer": "The user has not set password yet | The user's password has been reset by IT/Security team",
     "category": "Security",
-    "id": 672
+    "id": 697
   },
   {
     "question": "Center) and his/her manager (do not provide the manager name).",
     "answer": "If the impacted user is a D/I user, suggest him/her to contact HR directly or his/her manager (do",
     "category": "Security",
-    "id": 673
+    "id": 698
   },
   {
     "question": "Correct Weight: 1 A temporary domain password is valid for ________ (Numbers only) hours. 2 Correct Weight: 1 How does a technician provide an end user with a temporary password after a successful validation?",
     "answer": "SMS to a valid Mobile Phone number maintained in SAP People or NEPRA | Hotline Call | Direct Message in SAP Teams Chat(1:1)",
     "category": "Security",
-    "id": 674
+    "id": 699
   },
   {
     "question": "Attempts Time Taken  1  00:00:31:49 Correct Weight: 1 Select the correct ways to validate an end user who is an active SAP employee:",
     "answer": "SMS/Call back to mobile phone number maintained in SAP People or NEPRA | Manager's approval via RITM (IT tickets)",
     "category": "Security",
-    "id": 675
+    "id": 700
   },
   {
     "question": "Correct Weight: 1 What is the correct process for requesting access to review emails of a resigned employee?",
     "answer": "If the resigned employee is a D/I-user, guide the requestor to get approval from HR and DPPO",
     "category": "Security",
-    "id": 676
+    "id": 701
   },
   {
     "question": "Center) and his/her manager (do not provide the manager's name).",
     "answer": "If the impacted user is a D/I user, suggest him/her to contact HR directly or his/her manager (do",
     "category": "Security",
-    "id": 677
+    "id": 702
   },
   {
     "question": "Correct Weight: 1 What is social engineering?",
     "answer": "Social engineering is a tactic used by cybercriminals to manipulate people into divulging",
     "category": "Security",
-    "id": 678
+    "id": 703
   },
   {
     "question": "Correct Weight: 1 A temporary domain password is valid for ________ (Numbers only) hours. 2 Correct Weight: 1 If a manager has a designated delegate in ServiceNow, can the delegate approve requests for domain account unlock or password reset via RITM (IT tickets)?",
     "answer": "Yes",
     "category": "Security",
-    "id": 679
+    "id": 704
   },
   {
     "question": "Correct Weight: 1 Is it permitted to provide an external link in a ticket when documenting troubleshooting steps? For example, links found during a Google search.",
     "answer": "No",
     "category": "Security",
-    "id": 680
+    "id": 705
   },
   {
     "question": "Correct Weight: 1 Is it allowed for an end user to request a Temp Admin account for adding another administrator or reassigning a device?",
     "answer": "No",
     "category": "Security",
-    "id": 681
+    "id": 706
   },
   {
     "question": "Correct Weight: 1 Please correctly classify information. Which classiﬁcation level should Published Pr ess Releases move to?",
     "answer": "Public",
     "category": "Security",
-    "id": 682
+    "id": 707
   },
   {
     "question": "Correct Weight: 1 Two days after Jack left SAP, his manager found that the OneDrive ﬁles Jack shar ed were expired. Is it possible to restore these ﬁles?",
     "answer": "If Jack was a D/I-user, get approval from HR and DPPO oﬃce and then contact IT to restore the",
     "category": "Security",
-    "id": 683
+    "id": 708
+  },
+  {
+    "question": "When Jack launches an SAP shared tenant portal, he is prompted for a Microsoft Authenticator code.",
+    "answer": "The Authenticator app on his SAP-managed iPhone shows no account information. How can we solve this | issue? | Guide Jack to contact the shared tenant support for MFA reset. | courseid=34520136&moduleid=41199705&questionid=8863026&retry=True&review=True&LPId=0)",
+    "category": "Security",
+    "id": 709
   },
   {
     "question": "When Jack launches a customer (non SAP) SharePoint site, it prompts to enter a Microsoft Authenticator code. The Authenticator app on his SAP-managed iPhone shows no account information.",
     "answer": "How should you proceed as an IT support agent? | Suggest Jack to contact customer support desk for MFA reset. | courseid=34520136&moduleid=41199705&questionid=8863025&retry=True&review=True&LPId=0)",
     "category": "Security",
-    "id": 684
+    "id": 710
   },
   {
     "question": "ASSESSMENT - HCSM BASIC (HTTPS://CSIT.LITMOS.COM/COURSE/29867971?PARENTPAGE=ACHIEVEMENTS) Attempts Time Taken  1  00:00:38:58 Correct Weight: 1 As a support agent, when working on an Incident, the Service Oﬀering...",
     "answer": "must ﬁt the actual pr oblem and should be changed as necessary",
     "category": "HCSM",
-    "id": 685
+    "id": 711
   },
   {
     "question": "Correct Weight: 1 As a support agent, when you see several incidents for the same problem, you would...",
     "answer": "add them as child Incidents to one parent incident and then solve the parent incident when the",
     "category": "HCSM",
-    "id": 686
+    "id": 712
   },
   {
     "question": "Correct Weight: 1 We should keep in mind the user's limitations. For example, not contacting the user via MS Teams when the user's issue is related to MS Teams.",
     "answer": "TRUE",
     "category": "HCSM",
-    "id": 687
+    "id": 713
   },
   {
     "question": "Correct Weight: 1 What should you do in the following scenario as an IT Remote support agent? When managing an Incident, after having performed some research, a possible ﬁx to the user ’s issue has been found.",
     "answer": "Provide the possible ﬁx to the user in the r esolution notes, add troubleshooting steps in the",
     "category": "HCSM",
-    "id": 688
+    "id": 714
   },
   {
     "question": "Correct Weight: 1 Awaiting Info state can be used when…",
     "answer": "Requesting information necessary for the ticket resolution | Arranging a call back with an end user when remote trouble shooting is necessary.",
     "category": "HCSM",
-    "id": 689
+    "id": 715
   },
   {
     "question": "Correct Weight: 1 When should Agents click on \"Flag\" for a knowledge article?",
     "answer": "To report the missing knowledge in the existing knowledge article to the Service Owner of the",
     "category": "HCSM",
-    "id": 690
+    "id": 716
   },
   {
     "question": "Request should be created. Correct Weight: 1 Which of the following statements are correct about ServiceNow Notiﬁcations?",
     "answer": "It can be changed personally. | It can be set from User Proﬁle in IT Support Portal. | It can be set from User->Preferences->Notiﬁcations fr om Agent Workspace or UI16.",
     "category": "HCSM",
-    "id": 691
+    "id": 717
   },
   {
     "question": "Correct Weight: 1 What UI Action should be used in the interaction when a solution to an incident issue has been provided on Call or Chat?",
     "answer": "Create Resolved Incident",
     "category": "HCSM",
-    "id": 692
+    "id": 718
   },
   {
     "question": "Correct Weight: 1 When an agent processes an SCTask in \"New\" state and the agent needs to request more information from the requester. What action is correct?",
     "answer": "Change the state of SCTask to \"In progress\" ﬁrst and then click on \"Requester Input Requir ed\"",
     "category": "HCSM",
-    "id": 693
+    "id": 719
   },
   {
     "question": "Correct Weight: 1 If an end user contacts us for an issue he/she reported before but doesn't know the ticket number, how can you ﬁnd this tick et without asking the user?",
     "answer": "From \"Global Search\" | Under \"User's Tasks\" tab",
     "category": "HCSM",
-    "id": 694
+    "id": 720
   },
   {
     "question": "Correct Weight: 1 By clicking on \"Create Resolved Incidents\" from Interaction, the Incident can be solved directly. So as a support agent, we don't need to enter any details of the solution/troubleshooting steps in the ticket. Is this statement correct?",
     "answer": "No",
     "category": "HCSM",
-    "id": 695
+    "id": 721
   },
   {
     "question": "Correct Weight: 1 Please select the results that will be displayed in the HCSM Global Search:",
     "answer": "Requested Items | Interactions | Knowledge Base articles | Incidents",
     "category": "HCSM",
-    "id": 696
+    "id": 722
   },
   {
     "question": "Correct Weight: 1 Which is the correct request catalog when trying to create an internal IT request for which a speciﬁc form does not exist?",
     "answer": "Generic Internal IT Request",
     "category": "HCSM",
-    "id": 697
+    "id": 723
   },
   {
     "question": "Correct Weight: 1 When a user calls the IT hotline asking for the contact information of HRdirect team, and as a support agent, you provide the user the information. In this case, how should you process the interaction?",
     "answer": "Click on \"Create Service Request\" and create a generic IT request.",
     "category": "HCSM",
-    "id": 698
+    "id": 724
   },
   {
     "question": "Correct Weight: 1 Nexthink Amplify can be used for both Windows and Mac devices. Is this statement correct?",
     "answer": "Yes",
     "category": "HCSM",
-    "id": 699
+    "id": 725
   },
   {
     "question": "Correct Weight: 1 User’s Tasks tab must be checked when an Interaction (except walk-up interactions) has been saved.",
     "answer": "True. As we need to check if any open ticket already exists.",
     "category": "HCSM",
-    "id": 700
+    "id": 726
   },
   {
     "question": "Correct Weight: 1 Please select the correct Urgency and Impact in the following scenario: A user reported that the Wi- Fi connection in the same SAP oﬃce was not working (Mor e than 5000 users in that oﬃce). As an IT support agent, you need to create a ticket to report this issue.",
     "answer": "Impact: High – Urgency: High",
     "category": "HCSM",
-    "id": 701
+    "id": 727
   },
   {
     "question": "Correct Weight: 1 What is the correct statement for the processing of the scheduled Walk-up appointments via Advanced Work Assignment (AWA) Inbox for Onsite Support Service (OSS) Technicians?",
     "answer": "Walk-up appointments are pushed in to the Inbox queue 5 minutes before the scheduled time. | If the end-user do not attend the scheduled appointment, we should use \"Start collaboration\" -",
     "category": "HCSM",
-    "id": 702
+    "id": 728
   },
   {
     "question": "Correct Weight: 1 Jason calls the hotline and says he can't access to the computer due to that he forgot the password. You conﬁrm that Jason has RSA soft token enabled, so you have done the veriﬁcation b y the RSA soft token successfully and help him to reset the password. In this case, what ticket type should you use to create the ticket out of the interaction?",
     "answer": "Service Request",
     "category": "HCSM",
-    "id": 703
+    "id": 729
   },
   {
     "question": "Correct Weight: 1 Which of the following statements are true about Advanced Work Assignment (AWA)?",
     "answer": "AWA inbox will automatically put you \"Oﬄine\" after 60 minutes of inactivity | If your maximum walkup capacity in AWA is reached, no additional walkup work item",
     "category": "HCSM",
-    "id": 704
+    "id": 730
   },
   {
     "question": "Correct Weight: 1 At the end of an IT Support Agent's shift, ideally, there should be no open tickets (New or In Progress) left pending without an update for the user.",
     "answer": "TRUE",
     "category": "HCSM",
-    "id": 705
+    "id": 731
   },
   {
     "question": "Correct Weight: 1 After a Service Request has been closed by the Processor, can it be reopened?",
     "answer": "No",
     "category": "HCSM",
-    "id": 706
+    "id": 732
   },
   {
     "question": "Correct Weight: 1 When a public Knowledge Base article related to the Requester’s issue/query is available, what should we do?",
     "answer": "Attach the Knowledge Base article to the Incident via Agent Assist",
     "category": "HCSM",
-    "id": 707
+    "id": 733
   },
   {
     "question": "Correct Weight: 1 In the HCSM phone interface, what state allows us to answer incoming calls?",
     "answer": "On Queue",
     "category": "HCSM",
-    "id": 708
+    "id": 734
   },
   {
     "question": "Correct Weight: 1 Please select the correct Urgency and Impact in the next scenario: An end user calls the IT Support hotline, the issue is user cannot ﬁnd an application in Company Portal. You provide support to the user, and you create an Incident from the Interaction.",
     "answer": "Impact: Low – Urgency: Medium",
     "category": "HCSM",
-    "id": 709
+    "id": 735
   },
   {
     "question": "Correct Weight: 1 An Interaction must always include an accurate description of the user’s issue or query.",
     "answer": "TRUE",
     "category": "HCSM",
-    "id": 710
+    "id": 736
   },
   {
     "question": "Correct Weight: 1 If an Interaction (except walk-up interactions) is related to an existing Incident or Service Request, the Associate Record functionality must be used.",
     "answer": "TRUE",
     "category": "HCSM",
-    "id": 711
+    "id": 737
   },
   {
     "question": "Comment, set it to Awaiting Info State asking the user for a suitable time to receive a call or call hotline directly. Correct Weight: 1 As an OSS technician, how could you process emergency Meeting Room Support interactions in HCSM? (Multiple answers are correct)",
     "answer": "Via Inbox in Service Operations Workspace | Via push notiﬁcations on my SAP enrolled mobile device in ServiceNow Agent app | Via dedicated list: SAP IT Interactions -> “Meeting Room Support Interactions”",
     "category": "HCSM",
-    "id": 712
+    "id": 738
   },
   {
     "question": "Correct Weight: 1 What is the Request Category for CS agents to use in the Interactions?",
     "answer": "IES Interactions",
     "category": "HCSM",
-    "id": 713
+    "id": 739
   },
   {
     "question": "Correct Weight: 1 It's not necessary to document complete solution / trouble shooting steps in an Interaction for the issues solved directly via a call/chat/Walkup.",
     "answer": "FALSE",
     "category": "HCSM",
-    "id": 714
+    "id": 740
   },
   {
     "question": "Correct Weight: 1 When an Interaction or an Incident is assigned to an agent, the agent should resolve the ticket directly without recategorizing the ticket based on the real issue or request (E.g. Correct the ticket type or Change the service oﬀering).",
     "answer": "FALSE",
     "category": "HCSM",
-    "id": 715
+    "id": 741
   },
   {
     "question": "Correct Weight: 1 For which support process should we use the ServiceNow Agent Mobile app as an OSS technician?",
     "answer": "For Emergency Meeting Room Support process",
     "category": "HCSM",
-    "id": 716
+    "id": 742
   },
   {
     "question": "Correct Weight: 1 To get approval from the manager for Password reset in Service Request, standard template needs to be used by the agent. Where can the agent ﬁnd the templ ate?",
     "answer": "Response Templates",
     "category": "HCSM",
-    "id": 717
+    "id": 743
   },
   {
     "question": "Correct Weight: 1 In HCSM ticket, attachments can't be deleted once uploaded. Which team should be contacted if an attachment needs to be deleted?",
     "answer": "HCSM POST team",
     "category": "HCSM",
-    "id": 718
+    "id": 744
   },
   {
     "question": "Correct Weight: 1 What is the functionality of the Send Reply button in an Incident?",
     "answer": "It sets the Incident to Awaiting Info when requesting information from the end users to arrange a",
     "category": "HCSM",
-    "id": 719
+    "id": 745
   },
   {
     "question": "Correct Weight: 1 Which statements are correct for Internal Info?",
     "answer": "It's visible to IT agents only | Commonly used to provide troubleshooting steps performed by the agent before dispatching",
     "category": "HCSM",
-    "id": 720
+    "id": 746
   },
   {
     "question": "\"12345\" into \"Conﬁgur ation Item\" ﬁeld Correct Weight: 1 What statement is correct for IES Knowledge Articles and IES Internal IT Knowledge Articles",
     "answer": "IES Knowledge Articles are visible to End Users and can be attached via Agent Assist | IES Internal IT Knowledge Articles are visible to IT only and can't be attached via Agent Assist",
     "category": "HCSM",
-    "id": 721
+    "id": 747
   },
   {
     "question": "Correct Weight: 1 Where can the Approvers tab be found in a Service Request?",
     "answer": "In the Requested Item (RITM)",
     "category": "HCSM",
-    "id": 722
+    "id": 748
   },
   {
     "question": "Correct Weight: 1 Which of the following ﬁelds fr om an Incident will have an impact on SLA if changed?",
     "answer": "Priority",
     "category": "HCSM",
-    "id": 723
+    "id": 749
   },
   {
     "question": "Correct Weight: 1 Interactions (except walk-up interactions) can be closed on its own when:",
     "answer": "There is a related open ticket",
     "category": "HCSM",
-    "id": 724
+    "id": 750
   },
   {
     "question": "Correct Weight: 1 Which Catalog is used to create a Service request for Internal IT Support?",
     "answer": "Service Requests IES",
     "category": "HCSM",
-    "id": 725
+    "id": 751
   },
   {
     "question": "Correct Weight: 1 When working on a ticket with state \"New\", which of the following actions are correct when the ticket needs to be dispatched to other teams?",
     "answer": "Change the ticket to In Progress ﬁrst to ensur e the IRT is met. And click on Route->Forward to",
     "category": "HCSM",
-    "id": 726
+    "id": 752
   },
   {
     "question": "Correct Weight: 1 What resources are available for the agents to search for the possible solutions?",
     "answer": "Ticketing Tools (HCSM & ITdirect) | Work Zone | IT For You | Wiki pages",
     "category": "HCSM",
-    "id": 727
+    "id": 753
   },
   {
     "question": "Correct Weight: 1 As an OSS technician, which assignment group(s) you need to be a member to be able to process Walk-up and Meeting Room Support interactions?",
     "answer": "Member of both regional and local ITLC(IT Link Center) onsite assignment groups.",
     "category": "HCSM",
-    "id": 728
+    "id": 754
   },
   {
     "question": "Correct Weight: 1 What records does a Service Request contain?",
     "answer": "Request (REQ) | Requested Item (RITM) | Service Catalog Task (SC_TASK)",
     "category": "HCSM",
-    "id": 729
+    "id": 755
   },
   {
     "question": " 2  00:00:04:19 100% - Passed Correct Weight: 1 Please select the results that will be displayed in the HCSM Global Search:",
     "answer": "Requested Items | Interactions | Knowledge Base articles | Incidents",
     "category": "HCSM",
-    "id": 730
+    "id": 756
   },
   {
     "question": "Correct Weight: 1 What statements below are correct for Incident and Service Request?",
     "answer": "An Incident is an unplanned interruption to an IT service, performance degradation, reduction in the quality of an IT service, or a failure of a conﬁgur ation item that has not yet aﬀected",
     "category": "HCSM",
-    "id": 731
+    "id": 757
   },
   {
     "question": "Correct Weight: 1 My laptop has stopped working. I have to raise a service request.",
     "answer": "No",
     "category": "HCSM",
-    "id": 732
+    "id": 758
   },
   {
     "question": "Correct Weight: 1 In Service Operations Workspace, working with personal lists only is not recommended because…",
     "answer": "you may miss tickets due to wrong ﬁltering.",
     "category": "HCSM",
-    "id": 733
+    "id": 759
   },
   {
     "question": "Correct Weight: 1 If an end user contacts us via phone for an existing open ticket, What kind of actions should be taken by the IT agents?",
     "answer": "Check the tickets under \"User's Tasks\" tab | Associate the Interaction with the existing ticket by entering the ticket number into \"Related Record\" ﬁeld in Inter action | Don't create any incident or request out of the interaction",
     "category": "HCSM",
-    "id": 734
+    "id": 760
   },
   {
     "question": "Correct Weight: 1 Which of the following statements are correct about ServiceNow Notiﬁcations?",
     "answer": "It can be changed personally. | It can be set from User Proﬁle in IT Support Portal. | It can be set from User->Preferences->Notiﬁcations fr om Agent Workspace or UI16.",
     "category": "HCSM",
-    "id": 735
+    "id": 761
   },
   {
     "question": "Correct Weight: 1 Which scenarios below enable the IT agents to use Resolution Category \"Solved (Internal IT Knowledge Required)\"?",
     "answer": "An Internal IT Knowledge article was utilized | Solutions applied by agent don't require Knowledge article(e.g. In person Meeting Room support)",
     "category": "HCSM",
-    "id": 736
+    "id": 762
   },
   {
     "question": "Correct Weight: 1 As an OSS technician, how could you process emergency Meeting Room Support interactions in HCSM? (Multiple answers are correct)",
     "answer": "Via Inbox in Service Operations Workspace | Via push notiﬁcations on my SAP enrolled mobile device in ServiceNow Agent app | Via dedicated list: SAP IT Interactions -> “Meeting Room Support Interactions”",
     "category": "HCSM",
-    "id": 737
+    "id": 763
   },
   {
     "question": "Correct Weight: 1 What happens when an Incident has been in Awaiting Info state for 15 days?",
     "answer": "The Requester will get a reminder via email | The Incident state will be automactically set to Closed after another 15 days if no action taken by the user",
     "category": "HCSM",
-    "id": 738
+    "id": 764
   },
   {
     "question": "Correct Weight: 1 Personalized HCSM Lists can be shared and saved.",
     "answer": "TRUE",
     "category": "HCSM",
-    "id": 739
+    "id": 765
   },
   {
     "question": "Correct Weight: 1 Category and Subcategory ﬁeld ar e Mandatory. Which actions below can help you enter the value into these two ﬁelds at the same time?",
     "answer": "Select the corresponding equipment number of the device from \"Conﬁgur ation Item\" | If the equipment is not listed under Conﬁgur ation Item, check on \"CI override ﬁlter\" and enter \"12345\" into \"Conﬁgur ation Item\" ﬁeld",
     "category": "HCSM",
-    "id": 740
+    "id": 766
   },
   {
     "question": "Correct Weight: 1 We will get notiﬁcations fr om the HCSM Notiﬁcation bell (the Notiﬁcation bell is turned on) when…",
     "answer": "An Incident has been assigned to us | An Incident assigned to us has been updated",
     "category": "HCSM",
-    "id": 741
+    "id": 767
   },
   {
     "question": "Correct Weight: 1 Please select the correct Urgency and Impact in the following scenario: A user reported that the Wi-Fi connection in the same SAP oﬃce was not working (Mor e than 5000 users in that oﬃce). As an IT support agent, you need to create a ticket to report this issue.",
     "answer": "Impact: High – Urgency: High",
     "category": "HCSM",
-    "id": 742
+    "id": 768
   },
   {
     "question": "Correct Weight: 1 OSS Technicians will have a Walk-up Capacity deﬁned. What will c onsume OSS Technician available Walk-up capacity in Advanced Work Assignment?",
     "answer": "Work-item (Interaction or Appointment) in the inbox queue (waiting to be Accepted/Rejected) | Active \"In progress\" walk-up IMS (interaction) assigned to me",
     "category": "HCSM",
-    "id": 743
+    "id": 769
   },
   {
     "question": "Correct Weight: 1 When requesting manager’s approval in a Service Request, who can approve it?",
     "answer": "The manager or the delegates set by the manager",
     "category": "HCSM",
-    "id": 744
+    "id": 770
   },
   {
     "question": "Correct Weight: 1 As a support agent, when working on an Incident, the Service Oﬀering...",
     "answer": "must ﬁt the actual pr oblem and should be changed as necessary",
     "category": "HCSM",
-    "id": 745
+    "id": 771
   },
   {
     "question": "Correct Weight: 1 When a support agent leaves SAP, which is the correct statement for those New/In Progress tickets assigned to this agent?",
     "answer": "Assigned tickets stay as they are and must be picked up manually by other agents.",
     "category": "HCSM",
-    "id": 746
+    "id": 772
   },
   {
     "question": "Correct Weight: 1 As a support agent, when working on an Incident and you recognize the solution requires a Request, which of the action below is the best?",
     "answer": "Click on 3 dots and select \"Create Service Request\" function out of the Incident.",
     "category": "HCSM",
-    "id": 747
+    "id": 773
   },
   {
     "question": "Correct Weight: 1 What kind of actions should be taken if the manager's approval is a necessary option for a Global Domain Password Reset Service Request?",
     "answer": "Check if the Manager is not out of oﬃce, then r equest the user’s manager’s approval via the RITM",
     "category": "HCSM",
-    "id": 748
+    "id": 774
   },
   {
     "question": "Correct Weight: 1 What should an IT Support agent do in the following scenario? An end user needed a Global Domain Password Reset and manager’s approval was required to proceed. Approval from the manager is received, the IT Support agent proceeds to call the user to reset their password, but the end user does not answer the phone.",
     "answer": "Leave a voice message to inform users to call us back and update the SC_TASK with an External Comment, set it to Awaiting Info State asking the user for a suitable time to receive a",
     "category": "HCSM",
-    "id": 749
+    "id": 775
   },
   {
     "question": "When a user requests TAP to setup MFA, which type of ticket should be raised?",
     "answer": "Service request | courseid=34520135&moduleid=41207751&questionid=8864453&retry=True&review=True&LPId=0)",
     "category": "HCSM",
-    "id": 750
+    "id": 776
   },
   {
     "question": "As a support agent, when working on an Incident, the Service Oﬀering...",
     "answer": "must ﬁt the actual pr oblem and should be changed as necessary | courseid=34520135&moduleid=41207751&questionid=8864457&retry=True&review=True&LPId=0)",
     "category": "HCSM",
-    "id": 751
+    "id": 777
   },
   {
     "question": "As an OSS technician, how could you process emergency Meeting Room Support interactions in HCSM?",
     "answer": "Via dedicated list: SAP IT Interactions -> “Meeting Room Support Interactions” | Via Inbox in Service Operations Workspace | Via push notiﬁcations on my SAP enrolled mobile device in ServiceNow Agent app | courseid=34520135&moduleid=41207751&questionid=8864459&retry=True&review=True&LPId=0)",
     "category": "HCSM",
-    "id": 752
+    "id": 778
   },
   {
     "question": "Category and Subcategory ﬁeld are Mandatory. Which actions below can help you enter the value into these two ﬁelds at the same time?",
     "answer": "If the equipment is not listed under Conﬁgur ation Item, check on \"CI override ﬁlter\" and enter \"12345\" into | \"Conﬁgur ation Item\" ﬁeld | Select the corresponding equipment number of the device from \"Conﬁgur ation Item\" | courseid=34520135&moduleid=41207751&questionid=8864463&retry=True&review=True&LPId=0)",
     "category": "HCSM",
-    "id": 753
+    "id": 779
   },
   {
     "question": "If an end user contacts us for an issue he/she reported before but doesn't know the ticket number, how can you ﬁnd this ticket without asking the user?",
     "answer": "From \"Global Search\" | Under \"User's Tasks\" tab | courseid=34520135&moduleid=41207751&questionid=8864467&retry=True&review=True&LPId=0)",
     "category": "HCSM",
-    "id": 754
+    "id": 780
   },
   {
     "question": "In HCSM ticket, attachments can't be deleted once uploaded. Which team should be contacted if an attachment needs to be deleted?",
     "answer": "HCSM POST team | courseid=34520135&moduleid=41207751&questionid=8864469&retry=True&review=True&LPId=0)",
     "category": "HCSM",
-    "id": 755
+    "id": 781
   },
   {
     "question": "OSS Technicians will have a Walk-up Capacity deﬁned. What will consume OSS Technician available Walk- up capacity in Advanced Work Assignment?",
     "answer": "Active \"In progress\" walk-up IMS (interaction) assigned to the agent | Work-item (Interaction or Appointment) in the inbox queue (waiting to be Accepted/Rejected) | courseid=34520135&moduleid=41207751&questionid=8864476&retry=True&review=True&LPId=0)",
     "category": "HCSM",
-    "id": 756
+    "id": 782
   },
   {
     "question": "Personalized HCSM Lists can be shared and saved.",
     "answer": "TRUE | courseid=34520135&moduleid=41207751&questionid=8864477&retry=True&review=True&LPId=0)",
     "category": "HCSM",
-    "id": 757
+    "id": 783
   },
   {
     "question": "Please select the correct Urgency and Impact for the following scenario: An end user calls the IT Support hotline, the issue is user cannot ﬁnd an application in Company Portal. You provide support to the user, and you create an Incident from the Interaction.",
     "answer": "Impact: Low – Urgency: Medium | courseid=34520135&moduleid=41207751&questionid=8864478&retry=True&review=True&LPId=0)",
     "category": "HCSM",
-    "id": 758
+    "id": 784
   },
   {
     "question": "To get approval from the manager for Password reset in Service Request, standard template needs to be used by the agent. Where can the agent ﬁnd the template?",
     "answer": "Response Templates | courseid=34520135&moduleid=41207751&questionid=8864481&retry=True&review=True&LPId=0)",
     "category": "HCSM",
-    "id": 759
+    "id": 785
   },
   {
     "question": "\"User’s Tasks\" tab must be checked when an Interaction (except walk-up interactions) has been saved.",
     "answer": "True. As we need to check if any open ticket already exists. | courseid=34520135&moduleid=41207751&questionid=8864482&retry=True&review=True&LPId=0)",
     "category": "HCSM",
-    "id": 760
+    "id": 786
   },
   {
     "question": "What are the mandatory actions you need to take before you can start to use Advanced Work Assignment (for Walk-ups) for the ﬁrst time as an onsite IT technician?",
     "answer": "I need to deﬁne my maximum capacity for W alk-up channel | I need to staﬀ myself to the corr ect site assignment group for my IT link center location | courseid=34520135&moduleid=41207751&questionid=8864485&retry=True&review=True&LPId=0)",
     "category": "HCSM",
-    "id": 761
+    "id": 787
   },
   {
     "question": "What should an IT Support agent do in the following scenario? An end user needed a Global Domain Password Reset and manager’s approval was required to proceed. Approval from the manager is received, the IT Support agent proceeds to call the user to reset their password, but the end user does not answer the phone.",
     "answer": "Leave a voice message to inform users to call us back and update the SC_TASK with an External | Comment, set it to Awaiting Info State asking the user for a suitable time to receive a call or call hotline | directly. | courseid=34520135&moduleid=41207751&questionid=8864492&retry=True&review=True&LPId=0)",
     "category": "HCSM",
-    "id": 762
+    "id": 788
   },
   {
     "question": "What statements below are correct for Incident and Service Request?",
     "answer": "A Service Request is a formal request from an end user for a routine business function such as | information and advice, standard change, and access to IT services, using a predeﬁned service catalogue | with approval steps. | An Incident is an unplanned interruption to an IT service, performance degradation, reduction in the | quality of an IT service, or a failure of a conﬁgur ation item that has not yet aﬀected service. | courseid=34520135&moduleid=41207751&questionid=8864495&retry=True&review=True&LPId=0)",
     "category": "HCSM",
-    "id": 763
+    "id": 789
   },
   {
     "question": "When an agent processes an SCTask in \"New\" state and the agent needs to request more information from the requester. What action is correct?",
     "answer": "Change the state of SCTask to \"In progress\" ﬁrst and then click on \"Requester Input Requir ed\" from | SCTask | courseid=34520135&moduleid=41207751&questionid=8864499&retry=True&review=True&LPId=0)",
     "category": "HCSM",
-    "id": 764
+    "id": 790
   },
   {
     "question": "When an Interaction or an Incident is assigned to an agent, the agent should resolve the ticket directly without recategorizing the ticket based on the real issue or request (E.g. Correct the ticket type or Change the service oﬀering).",
     "answer": "FALSE | courseid=34520135&moduleid=41207751&questionid=8864500&retry=True&review=True&LPId=0)",
     "category": "HCSM",
-    "id": 765
+    "id": 791
   },
   {
     "question": "When a user calls the IT hotline asking for the contact information of HRdirect team, and as a support agent, you provide the information to the user. In this case, how should you process the interaction?",
     "answer": "Click on \"Create Request\" and create a generic IT request. | courseid=34520135&moduleid=41207751&questionid=8864501&retry=True&review=True&LPId=0)",
     "category": "HCSM",
-    "id": 766
+    "id": 792
   },
   {
     "question": "When working on an incident with state \"New\", which of the following actions are correct when the ticket needs to be dispatched to other teams?",
     "answer": "Change the ticket to In Progress ﬁrst to ensur e the IRT is met. And click on Route->Forward to Next Level | Check if the Service Oﬀering is corr ect before dispatching | courseid=34520135&moduleid=41207751&questionid=8864505&retry=True&review=True&LPId=0)",
     "category": "HCSM",
-    "id": 767
+    "id": 793
   },
   {
     "question": "Which of the following statements are correct about ServiceNow Notiﬁcations?",
     "answer": "It can be changed personally. | It can be set from User Proﬁle in IT Support Portal. | It can be set from User->Preferences->Notiﬁcations fr om Agent Workspace or UI16. | courseid=34520135&moduleid=41207751&questionid=8864508&retry=True&review=True&LPId=0)",
     "category": "HCSM",
-    "id": 768
+    "id": 794
   },
   {
     "question": "How long does the system wait before reassigning a rejected Walk‐up work item?",
     "answer": "3 minutes | courseid=34520135&moduleid=41207751&questionid=8864514&retry=True&review=True&LPId=0)",
     "category": "HCSM",
-    "id": 769
+    "id": 795
   },
   {
     "question": "Which criteria are used for automated routing for Advanced Work Assignment (AWA)?",
     "answer": "Availability | Capacity | Skills | courseid=34520135&moduleid=41207751&questionid=8864515&retry=True&review=True&LPId=0)",
     "category": "HCSM",
-    "id": 770
+    "id": 796
   },
   {
     "question": "Which AI Copilot function allows you to quickly view a ticket’s history?",
     "answer": "Summarize Incident | courseid=34520135&moduleid=41207751&questionid=8864516&retry=True&review=True&LPId=0)",
     "category": "HCSM",
-    "id": 771
+    "id": 797
   },
   {
     "question": "Which of the following statements about wrap-up codes are correct? (Select all that apply.) Agents use wrap-up codes to categorize and document each interaction they handle.",
     "answer": "The \"Soc Eng\" wrap-up code should be selected when the call is identiﬁed as a social engineering | attempt or a suspicious call that requires further investigation. | When a call is disconnected, a 20-second wrap-up timer is automatically initiated. | courseid=34520135&moduleid=41207751&questionid=8864519&retry=True&review=True&LPId=0)",
     "category": "HCSM",
-    "id": 772
+    "id": 798
   },
   {
     "question": "Which of the following statements about ITLC (IT Link Center) Queue Away Mode are correct? (Select all that apply.) Away mode must be disabled when the OSS agent returns to the ITLC.",
     "answer": "To enable Away mode for ITLC, navigate to Open Lists → SAP IT Interactions → Walk-up Locations, | select the desired location, and check the \"Enable Away State\" option. | When an OSS agent leaves the ITLC for more than 15 minutes and no other agent is available during | operational hours, the OSS agent must switch the ITLC queue to Away mode. | courseid=34520135&moduleid=41207751&questionid=8864520&retry=True&review=True&LPId=0) | Complete",
     "category": "HCSM",
-    "id": 773
+    "id": 799
   },
   {
     "question": "Attempts Time Taken  1  00:00:31:33 Correct Weight: 1 As a support agent, when working on an Incident, the Service Oﬀering...",
     "answer": "must ﬁt the actual pr oblem and should be changed as necessary",
     "category": "HCSM",
-    "id": 774
+    "id": 800
   },
   {
     "question": "Correct Weight: 1 When should Agents click on \"Report a Knowledge Gap\" when resolving the incidents?",
     "answer": "There is no Knowledge base article available for the solution provided",
     "category": "HCSM",
-    "id": 775
+    "id": 801
   },
   {
     "question": "Correct Weight: 1 \"Agent Assist\" should be checked for all tickets. Please select the correct statements.",
     "answer": "Only attach an article which resolves the issue in the ticket | If no article is found, we need to click on \"Report a Knowledge Gap\" and enter the",
     "category": "HCSM",
-    "id": 776
+    "id": 802
   },
   {
     "question": "Required\" from SCTask Correct Weight: 1 If an end user contacts us via phone for an existing open ticket, What kind of actions should be taken by the IT agents?",
     "answer": "Check the tickets under \"User's Tasks\" tab | Associate the Interaction with the existing ticket by entering the ticket number into \"Related",
     "category": "HCSM",
-    "id": 777
+    "id": 803
   },
   {
     "question": "Request should be created. Correct Weight: 1 What statement is correct for IES Knowledge Articles and IES Internal IT Knowledge Articles",
     "answer": "IES Knowledge Articles are visible to End Users and can be attached via Agent Assist",
     "category": "HCSM",
-    "id": 778
+    "id": 804
   },
   {
     "question": "Assist Correct Weight: 1 When a user calls the IT hotline asking for the contact information of HRdirect team, and as a support agent, you provide the user the information. In this case, how should you process the interaction?",
     "answer": "Click on \"Create Service Request\" and create a generic IT request.",
     "category": "HCSM",
-    "id": 779
+    "id": 805
   },
   {
     "question": "When a user reports no Wi‐Fi connectivity on the laptop, which type of ticket should be raised?",
     "answer": "Incident ticket | courseid=33782058&moduleid=40342437&questionid=8521034&retry=True&review=True&LPId=0)",
     "category": "HCSM",
-    "id": 780
+    "id": 806
   },
   {
     "question": "As an OSS technician, which assignment group(s) you need to be a member to be able to process Walk- up and Meeting Room Support interactions?",
     "answer": "Member of both regional and local ITLC(IT Link Center) onsite assignment groups. | courseid=33782058&moduleid=40342437&questionid=8521042&retry=True&review=True&LPId=0)",
     "category": "HCSM",
-    "id": 781
+    "id": 807
   },
   {
     "question": "Jason calls the hotline and says he can't access to the computer due to that he forgot the password.",
     "answer": "You conﬁrm that Jason has RSA soft token enabled, so you have done the veriﬁcation by the RSA soft | token successfully and help him to reset the password. In this case, what ticket type should you use to | create the ticket out of the interaction? | Service Request | courseid=33782058&moduleid=40342437&questionid=8521055&retry=True&review=True&LPId=0)",
     "category": "HCSM",
-    "id": 782
+    "id": 808
   },
   {
     "question": "OSS Technicians will have a Walk-up Capacity deﬁned. What will consume OSS Technician available Walk-up capacity in Advanced Work Assignment?",
     "answer": "Active \"In progress\" walk-up IMS (interaction) assigned to the agent | Work-item (Interaction or Appointment) in the inbox queue (waiting to be Accepted/Rejected) | courseid=33782058&moduleid=40342437&questionid=8521058&retry=True&review=True&LPId=0)",
     "category": "HCSM",
-    "id": 783
+    "id": 809
   },
   {
     "question": "Please select the correct Urgency and Impact in the following scenario: A user reported that the Wi-Fi connection in the same SAP oﬃce was not working (More than 5000 users in that oﬃce). As an IT support agent, you need to create a ticket to report this issue.",
     "answer": "Impact: High – Urgency: High | courseid=33782058&moduleid=40342437&questionid=8521061&retry=True&review=True&LPId=0)",
     "category": "HCSM",
-    "id": 784
+    "id": 810
   },
   {
     "question": "When a public Knowledge Base article related to the Requester’s issue/query is available, what should we do?",
     "answer": "Attach the Knowledge Base article to the Incident via Agent Assist | courseid=33782058&moduleid=40342437&questionid=8521079&retry=True&review=True&LPId=0)",
     "category": "HCSM",
-    "id": 785
+    "id": 811
   },
   {
     "question": "Which of the following ﬁelds from an Incident will have an impact on SLA if changed?",
     "answer": "Priority | courseid=33782058&moduleid=40342437&questionid=8521089&retry=True&review=True&LPId=0)",
     "category": "HCSM",
-    "id": 786
+    "id": 812
   },
   {
     "question": "Attempts Time Taken  1  00:00:35:02 Correct Weight: 1 We will get notiﬁcations fr om the HCSM Notiﬁcation bell (the Notiﬁcation bell is turned on) when…",
     "answer": "An Incident has been assigned to us | An Incident assigned to us has been updated",
     "category": "HCSM",
-    "id": 787
+    "id": 813
   },
   {
     "question": "Correct Weight: 1 By clicking on \"Create Resolved Incidents\" from an Interaction, the Incident can be solved directly. So as a support agent, we don't need to enter any details of the solution/troubleshooting steps in the ticket. Is this statement correct?",
     "answer": "No",
     "category": "HCSM",
-    "id": 788
+    "id": 814
   },
   {
     "question": "Comment, set it to Awaiting Info State asking the user for a suitable time to receive a call or call hotline directly. Correct Weight: 1 When an agent processes an SCTask in \"New\" state and the agent needs to request more information from the requester. What action is correct?",
     "answer": "Change the state of SCTask to \"In progress\" ﬁrst and then click on \"Requester Input Requir ed\"",
     "category": "HCSM",
-    "id": 789
+    "id": 815
   },
   {
     "question": "Correct Weight: 1 Agent Assist should be checked for all tickets. Please select the correct statements.",
     "answer": "Only attach an article which resolves the issue in the ticket | If no article is found, we need to click on \"Report a Knowledge Gap\" and enter the",
     "category": "HCSM",
-    "id": 790
+    "id": 816
   },
   {
     "question": "Correct Weight: 1 In HCSM, agents should check for duplicate tickets by reviewing the \"User's Tasks\" tab in Interaction before creating a new incident or request.",
     "answer": "TRUE",
     "category": "HCSM",
-    "id": 791
+    "id": 817
   },
   {
     "question": "Correct Weight: 1 Which criteria are used for automated routing for Advanced Work Assignment (AWA)?",
     "answer": "Availability | Capacity | Skills",
     "category": "HCSM",
-    "id": 792
+    "id": 818
   },
   {
     "question": "Request should be created. Correct Weight: 1 An Interaction must always include an accurate description of the user’s issue or query.",
     "answer": "TRUE",
     "category": "HCSM",
-    "id": 793
+    "id": 819
   },
   {
     "question": "Correct Weight: 1 As an OSS technician, how could you process emergency Meeting Room Support interactions in HCSM?",
     "answer": "Via Inbox in Service Operations Workspace | Via push notiﬁcations on my SAP enrolled mobile device in ServiceNow Agent app | Via dedicated list: SAP IT Interactions -> “Meeting Room Support Interactions”",
     "category": "HCSM",
-    "id": 794
+    "id": 820
   },
   {
     "question": "Correct Weight: 1 \"User’s Tasks\" tab must be checked when an Interaction (except walk-up interactions) has been saved.",
     "answer": "True. As we need to check if any open ticket already exists.",
     "category": "HCSM",
-    "id": 795
+    "id": 821
   },
   {
     "question": "\"12345\" into \"Conﬁgur ation Item\" ﬁeld Correct Weight: 1 When a user calls the IT hotline asking for the contact information of HRdirect team, and as a support agent, you provide the information to the user. In this case, how should you process the interaction?",
     "answer": "Click on \"Create Service Request\" and create a generic IT request.",
     "category": "HCSM",
-    "id": 796
+    "id": 822
   },
   {
     "question": "Correct Weight: 1 If an Interaction (except walk-up interactions) is related to an existing open Incident or Service Request, the Associate Record functionality must be used.",
     "answer": "TRUE",
     "category": "HCSM",
-    "id": 797
+    "id": 823
   },
   {
     "question": "Correct Weight: 1 We should keep the user's limitations in mind. For example, not contacting the user via MS Teams when the user's issue is related to MS Teams.",
     "answer": "TRUE",
     "category": "HCSM",
-    "id": 798
+    "id": 824
   },
   {
     "question": "Correct Weight: 1 It's not necessary to document complete solution / troubleshooting steps in an Interaction for the issues solved directly via a call/chat/Walkup.",
     "answer": "FALSE",
     "category": "HCSM",
-    "id": 799
+    "id": 825
   },
   {
     "question": "Correct Weight: 1 What are the mandatory actions you need to take before you can start to use Advanced Work Assignment (for Walk-ups) for the ﬁrst time as an onsite IT technician?",
     "answer": "I need to staﬀ myself to the corr ect site assignment group for my IT link center location | I need to deﬁne my maximum capacity for W alk-up channel",
     "category": "HCSM",
-    "id": 800
+    "id": 826
   },
   {
     "question": "Attempts Time Taken  2  00:00:06:08 Correct Weight: 1 Which of the following statements are correct about ServiceNow Notiﬁcations?",
     "answer": "It can be changed personally. | It can be set from User Proﬁle in IT Support Portal. | It can be set from User->Preferences->Notiﬁcations fr om Agent Workspace or UI16.",
     "category": "HCSM",
-    "id": 801
+    "id": 827
   },
   {
     "question": "Request should be created. Correct Weight: 1 What is the functionality of the Send Reply button in an Incident?",
     "answer": "It sets the Incident to Awaiting Info when requesting information from the end users to arrange a",
     "category": "HCSM",
-    "id": 802
+    "id": 828
   },
   {
     "question": "Correct Weight: 1 What statement is correct for IES Knowledge Articles and IES Internal IT Knowledge Articles",
     "answer": "IES Knowledge Articles are visible to End Users and can be attached via Agent Assist | IES Internal IT Knowledge Articles are visible to IT only and can't be attached via Agent Assist",
     "category": "HCSM",
-    "id": 803
+    "id": 829
   },
   {
     "question": "Comment, set it to Awaiting Info State asking the user for a suitable time to receive a call or call hotline directly. Correct Weight: 1 As a support agent, when you see several incidents for the same problem, you would...",
     "answer": "add them as child Incidents to one parent incident and then solve the parent incident when the",
     "category": "HCSM",
-    "id": 804
+    "id": 830
   },
   {
     "question": "PM . Attempts Time Taken  1  00:00:19:26 Correct Weight: 1 When an agent processes an SCTask in \"New\" state and the agent needs to request more information from the requester. What action is correct?",
     "answer": "Change the state of SCTask to \"In progress\" ﬁrst and then click on \"Requester Input Requir ed\"",
     "category": "HCSM",
-    "id": 805
+    "id": 831
   },
   {
     "question": "Correct Weight: 1 What statement is correct for SAP IT Knowledge Articles and SAP IT Internal Knowledge Articles",
     "answer": "SAP IT Knowledge Articles are visible to End Users and can be attached via Agent Assist",
     "category": "HCSM",
-    "id": 806
+    "id": 832
   },
   {
     "question": "Comment, set it to Awaiting Info State asking the user for a suitable time to receive a call or call hotline directly. Correct Weight: 1 What should you do in the following scenario as an IT Remote support agent? When managing an Incident, after having performed some research, a possible ﬁx to the user ’s issue has been found.",
     "answer": "Provide the possible ﬁx to the user in the r esolution notes, add troubleshooting steps in the",
     "category": "HCSM",
-    "id": 807
+    "id": 833
   },
   {
     "question": "Correct Weight: 1 When a user calls the IT hotline asking for the contact information of HRdirect team, and as a support agent, you provide the information to the user. In this case, how should you process the interaction?",
     "answer": "Click on \"Create Service Request\" and create a generic IT request.",
     "category": "HCSM",
-    "id": 808
+    "id": 834
+  },
+  {
+    "question": "What should you do in the following scenario as an IT Remote support agent? When managing an Incident, after having performed some research, a possible ﬁx to the user’s issue has been found.",
+    "answer": "Provide the possible ﬁx to the user in the r esolution notes, add troubleshooting steps in the internal | notes. set the Incident to Resolved state | courseid=34520135&moduleid=41207751&questionid=8864493&retry=True&review=True&LPId=0)",
+    "category": "HCSM",
+    "id": 835
+  },
+  {
+    "question": "What UI Action should be used in the interaction when a solution to an incident issue has been providedonCallorChat?",
+    "answer": "Create Resolved Incident | courseid=34520135&moduleid=41207751&questionid=8864496&retry=True&review=True&LPId=0)",
+    "category": "HCSM",
+    "id": 836
+  },
+  {
+    "question": "In which of the following scenarios are IT agents permitted to use the Resolution Category ‘Solved (Internal IT Knowledge Required)’?",
+    "answer": "An Internal IT Knowledge article was utilized | Solutions applied by agent don't require Knowledge article(e.g. In person Meeting Room support) | courseid=34520135&moduleid=41207751&questionid=8864511&retry=True&review=True&LPId=0)",
+    "category": "HCSM",
+    "id": 837
+  },
+  {
+    "question": "Which closing template should be used when resolving an Incident?",
+    "answer": "Closing Template generated by AI Copilot(Communicating INC Resolution) | General Closing Template in Incidents | courseid=34520135&moduleid=41207751&questionid=8864517&retry=True&review=True&LPId=0)",
+    "category": "HCSM",
+    "id": 838
+  },
+  {
+    "question": "Awaiting Info state can be used when… Arranging a call back with an end user when remote trouble shooting is necessary.",
+    "answer": "Requesting information necessary for the ticket resolution | courseid=34520135&moduleid=41207751&questionid=8864462&retry=True&review=True&LPId=0)",
+    "category": "HCSM",
+    "id": 839
+  },
+  {
+    "question": "If an end user contacts us via phone for an existing open ticket, What kind of actions should be taken bytheITagents?",
+    "answer": "by the IT agents? | Associate the Interaction with the existing ticket by entering the ticket number into \"Related Record\" | ﬁeld in Inter action | Check the tickets under \"User's Tasks\" tab | Don't create any incident or request out of the interaction | courseid=34520135&moduleid=41207751&questionid=8864465&retry=True&review=True&LPId=0)",
+    "category": "HCSM",
+    "id": 840
   }
 ]
